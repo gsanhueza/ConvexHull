@@ -14,15 +14,15 @@ template <class T>
 */
 class Poligono
 {
+    template<class U>
     /**
     * @brief Imprime información de este Poligono.
     *
     * @param U p_U: Tipo del Poligono.
     * @param out p_out: Stream de salida.
-    * @param v p_v: Poligono a imprimir.
+    * @param p p_p: Poligono a imprimir.
     * @return std::ostream& Stream de salida.
     */
-    template<class U>
     friend ostream& operator<<(ostream &out, const Poligono<U> &p);
 
 public:

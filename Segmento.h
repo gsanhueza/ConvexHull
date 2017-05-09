@@ -12,15 +12,15 @@ template <class T>
 */
 class Segmento
 {
+    template<class U>
     /**
     * @brief Imprime información de este Segmento.
     *
     * @param U p_U: Tipo del Segmento.
     * @param out p_out: Stream de salida.
-    * @param v p_v: Segmento a imprimir.
+    * @param s p_s: Segmento a imprimir.
     * @return std::ostream& Stream de salida.
     */
-    template<class U>
     friend ostream& operator<<(ostream &out, const Segmento<U> &s);
 
 public:
