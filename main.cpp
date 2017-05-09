@@ -35,9 +35,9 @@ void testPunto(void)
     Punto<int> p2(5, 3);
     Punto<int> p3(p2);
 
-    p1.print();
-    p2.print();
-    p3.print();
+    cout << p1 << endl;
+    cout << p2 << endl;
+    cout << p3 << endl;
 
     assert(not (p1 == p2));
     assert(not (p1 == p3));
@@ -46,17 +46,17 @@ void testPunto(void)
     Punto<int> p5(7, 7);
 
     assert((p3 + p4) == p5);
-    p3.print();
+    cout << p3 << endl;
     assert((p5 - p3) == p4);
 
     p1 = p2;
     assert(p1 == p2);
 
     p1 = p2 * 5;
-    p1.print();
+    cout << p1 << endl;
 
     Punto<double> p6(5.5, 3.8);
-    p6.print();
+    cout << p6 << endl;
     cout << endl;
 }
 
@@ -75,14 +75,14 @@ void testVector(void)
     int dot23 = v2.dotProduct(v3);
     Vector<int> cross23 = v2 * v3;
 
-    v1.print();
-    v2.print();
-    v3.print();
-    v4.print();
+    cout << v1 << endl;
+    cout << v2 << endl;
+    cout << v3 << endl;
+    cout << v4 << endl;
 
     cout << "Producto punto (int) --> (1, 1, 2) · (1, 1, 1): " << dot23 << endl;
     cout << "Producto cruz (int) --> (1, 1, 2) × (1, 1, 1): ";
-    cross23.print();
+    cout << cross23 << endl;
 
     Vector<double> dv1;
     Vector<double> dv2(1.1, 1, 2);
@@ -93,17 +93,17 @@ void testVector(void)
 
     cout << "Producto punto (double) --> (1.1, 1, 2) · (1.1, 1, 1): " << ddot23 << endl;
     cout << "Producto cruz (double) --> (1, 1, 2) × (1, 1, 1): ";
-    dcross23.print();
+    cout << dcross23 << endl;
 
     Vector<int> v5(2, 3, 0);
     Vector<int> v6 = v5.normalize();
     cout << "Normalizacion (int) de (2, 3, 0): ";
-    v6.print();
+    cout << v6 << endl;
 
     Vector<double> v7(2, 3, 0);
     Vector<double> v8 = v7.normalize();
     cout << "Normalizacion (double) de (2, 3, 0): ";
-    v8.print();
+    cout << v8 << endl;
 
     Vector<int> v9(5, 3, 2017);
     Vector<int> v10(19, 23512342, 3);
@@ -119,14 +119,14 @@ void testVector(void)
     Vector<double> dcross9_10 = dv9 * dv10;
 
     cout << "Producto cruz (int) numero grande/primo --> (5, 3, 2017) × (19, 23512342, 3): ";
-    cross9_10.print();
+    cout << cross9_10 << endl;
     cout << "Producto cruz (double) numero grande/primo --> (5, 3, 2017) × (19, 23512342, 3): ";
-    dcross9_10.print();
+    cout << dcross9_10 << endl;
 
     cout << "Normalizacion (int) de (19, 23512342, 3): ";
-    v10.normalize().print();
+    cout << v10.normalize() << endl;
     cout << "Normalizacion (double) de (19, 23512342, 3): ";
-    dv10.normalize().print();
+    cout << dv10.normalize() << endl;
 
     cout << endl;
 }
@@ -140,7 +140,7 @@ void testSegmento(void)
     Punto<int> p1(3, 5);
     Punto<int> p2(6, 3);
     Segmento<int> s1(p1, p2);
-    s1.print();
+    cout << s1 << endl;
     Punto<int> p3(2, 5);
     assert(s1.isThisPointAtLeft(p3));
     assert(not s1.isThisPointAtRight(p3));
@@ -187,7 +187,7 @@ void testPoligono(void)
     Punto<int> p4(1, 5);
     Punto<int> p5(1, 0);
     Poligono<int> pol1(5, &p1, &p2, &p3, &p4, &p5);
-    pol1.print();
+    cout << pol1 << endl;
     assert(pol1.isCCW());
     assert(pol1.area() == 22);
 
@@ -199,7 +199,8 @@ void testPoligono(void)
     assert(pol1.isInside(innerPoint));
     assert(not pol1.isInside(outerPoint));
 
-    innerPoint.print();
+    cout << innerPoint;
+
     if (pol1.isInside(innerPoint))
     {
         cout << " está adentro del polígono." << endl;
@@ -211,7 +212,7 @@ void testPoligono(void)
 
     cout << endl;
 
-    outerPoint.print();
+    cout << outerPoint;
     if (pol1.isInside(outerPoint))
     {
         cout << " está adentro del polígono." << endl;

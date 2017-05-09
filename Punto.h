@@ -1,6 +1,7 @@
 #ifndef PUNTO_H
 #define PUNTO_H
 
+#include <iostream>
 using namespace std;
 
 template<class T>
@@ -10,6 +11,17 @@ template<class T>
 */
 class Punto
 {
+    /**
+    * @brief Imprime información de este Punto.
+    *
+    * @param U p_U: Tipo del Punto.
+    * @param out p_out: Stream de salida.
+    * @param p p_p: Puntoa imprimir.
+    * @return std::ostream& Stream de salida.
+    */
+    template<class U>
+    friend ostream& operator<<(ostream &out, const Punto<U> &p);
+
 public:
     /**
     * @brief Constructor vacío. Crea un punto en (0, 0)
@@ -80,12 +92,6 @@ public:
     */
     template<typename U>
     Punto<T> operator* (const U scale) const;
-
-    /**
-    * @brief Imprime información de este punto.
-    *
-    */
-    void print(void) const;
 
     /**
     * @brief Getter de X.
@@ -168,10 +174,11 @@ Punto<T> Punto<T>::operator*(const U scale) const
     return temp;
 }
 
-template<class T>
-void Punto<T>::print() const
+template<class U>
+ostream& operator<<(ostream &out, const Punto<U> &p)
 {
-    cout << "Punto (" << m_x << ", " << m_y << ")" << endl;
+    out << "Punto (" << p.m_x << ", " << p.m_y << ")";
+    return out;
 }
 
 template<class T>

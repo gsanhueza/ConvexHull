@@ -14,6 +14,17 @@ template <class T>
 */
 class Poligono
 {
+    /**
+    * @brief Imprime información de este Poligono.
+    *
+    * @param U p_U: Tipo del Poligono.
+    * @param out p_out: Stream de salida.
+    * @param v p_v: Poligono a imprimir.
+    * @return std::ostream& Stream de salida.
+    */
+    template<class U>
+    friend ostream& operator<<(ostream &out, const Poligono<U> &p);
+
 public:
     /**
     * @brief Constructor del polígono. Puede recibir una cantidad indeterminada de puntos.
@@ -49,12 +60,6 @@ public:
     * @return bool True si el punto está adentro. False si está afuera.
     */
     bool isInside(Punto<T> p) const;
-
-    /**
-    * @brief Imprime información de este Polígono.
-    *
-    */
-    void print(void) const;
 
 private:
     int numLados;
@@ -150,15 +155,16 @@ bool Poligono<T>::isInside(Punto<T> p) const
     return crosses % 2;
 }
 
-template<class T>
-void Poligono<T>::print() const
+template<class U>
+ostream& operator<<(ostream &out, const Poligono<U> &p)
 {
-    cout << "Polígono de " << numLados << " lados." << endl;
-    cout << "Coordenadas: " << endl;
-    for (Punto<T> p : listPuntos)
+    out << "Polígono de " << p.numLados << " lados." << endl;
+    out << "Coordenadas: " << endl;
+    for (Punto<U> P : p.listPuntos)
     {
-        cout << " (" << p.getX() << ", " << p.getY() << ")" << endl;
+        cout << " (" << P.getX() << ", " << P.getY() << ")" << endl;
     }
+    return out;
 }
 
 #endif // POLIGONO_H

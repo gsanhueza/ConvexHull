@@ -12,6 +12,17 @@ template <class T>
 */
 class Segmento
 {
+    /**
+    * @brief Imprime información de este Segmento.
+    *
+    * @param U p_U: Tipo del Segmento.
+    * @param out p_out: Stream de salida.
+    * @param v p_v: Segmento a imprimir.
+    * @return std::ostream& Stream de salida.
+    */
+    template<class U>
+    friend ostream& operator<<(ostream &out, const Segmento<U> &s);
+
 public:
     /**
     * @brief Constructor de segmento con coordenadas dadas.
@@ -72,7 +83,7 @@ public:
     * @param p p_p: Punto a revisar.
     * @return bool True si el punto está arriba. False si no.
     */
-    bool isThisPointAtTop(const Punto<T>& p);               // Detecta si punto está arriba
+    bool isThisPointAtTop(const Punto<T>& p);
 
     /**
     * @brief Chequea si el punto está abajo del segmento.
@@ -80,13 +91,7 @@ public:
     * @param p p_p: Punto a revisar.
     * @return bool True si el punto está abajo. False si no.
     */
-    bool isThisPointAtBottom(const Punto<T>& p);            // Detecta si punto está abajo
-
-    /**
-    * @brief Imprime información de este segmento.
-    *
-    */
-    void print(void) const;                                 // Imprime detalles
+    bool isThisPointAtBottom(const Punto<T>& p);
 
 private:
     Punto<T> m_a;
@@ -124,10 +129,11 @@ bool Segmento<T>::operator==(const Segmento<T>& s) const
     return m_a == s.m_a and m_b == s.m_b;
 }
 
-template<class T>
-void Segmento<T>::print() const
+template<class U>
+ostream& operator<<(ostream &out, const Segmento<U> &s)
 {
-    cout << "Segmento (" << m_a.getX() << ", " << m_a.getY() << ") --- (" << m_b.getX() << ", " << m_b.getY() << ")" << endl;
+    out << "Segmento (" << s.m_a.getX() << ", " << s.m_a.getY() << ") --- (" << s.m_b.getX() << ", " << s.m_b.getY() << ")";
+    return out;
 }
 
 template<class T>

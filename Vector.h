@@ -11,6 +11,17 @@ template<class T>
 */
 class Vector
 {
+    /**
+     * @brief Imprime información de este Vector.
+     *
+     * @param U p_U: Tipo del Vector.
+     * @param out p_out: Stream de salida.
+     * @param v p_v: Vector a imprimir.
+     * @return std::ostream& Stream de salida.
+     */
+    template<class U>
+    friend ostream& operator<<(ostream &out, const Vector<U> &v);
+
 public:
     /**
     * @brief Constructor vacío.
@@ -94,12 +105,6 @@ public:
     * @return Vector< T > Nuevo vector, normalización de este vector.
     */
     Vector<T> normalize(void) const;
-
-    /**
-    * @brief Imprime información de este vector.
-    *
-    */
-    void print(void) const;
 
     /**
     * @brief Getter de X.
@@ -211,10 +216,11 @@ Vector<T> Vector<T>::normalize() const
     return temp;
 }
 
-template<class T>
-void Vector<T>::print() const
+template<class U>
+ostream& operator<<(ostream &out, const Vector<U> &v)
 {
-    cout << "Vector (" << m_x << ", " << m_y << ", " << m_z << ")" << endl;
+    out << "Vector (" << v.m_x << ", " << v.m_y << ", " << v.m_z << ")";
+    return out;
 }
 
 template<class T>
