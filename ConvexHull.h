@@ -11,26 +11,19 @@ template<class T>
 class ConvexHull
 {
 public:
-    ConvexHull<T>();
-    ~ConvexHull<T>();
-
-    Poligono<T> giftWrapping(Punto<T> *cloud);
-    Poligono<T> quickHull(Punto<T> *cloud);
+    Poligono<T> giftWrapping(Punto<T> **cloud);
+    Poligono<T> quickHull(Punto<T> **cloud);
 };
 
 template<class T>
-ConvexHull<T>::ConvexHull()
+Poligono<T> ConvexHull<T>::giftWrapping(Punto<T> **cloud)
 {
-}
+    int i = 0;
+    do
+    {
+        cout << *cloud[i] << endl;
+    } while (cloud[++i] != nullptr);
 
-template<class T>
-ConvexHull<T>::~ConvexHull()
-{
-}
-
-template<class T>
-Poligono<T> ConvexHull<T>::giftWrapping(Punto<T>* cloud)
-{
 //     Punto<T> pointOnHull = "leftmost point in cloud";
 //     int i = 0;
 //     Punto<T> endpoint;
@@ -57,7 +50,7 @@ Poligono<T> ConvexHull<T>::giftWrapping(Punto<T>* cloud)
 }
 
 template<class T>
-Poligono<T> ConvexHull<T>::quickHull(Punto<T>* cloud)
+Poligono<T> ConvexHull<T>::quickHull(Punto<T> **cloud)
 {
     Poligono<T> hull(0);
     return hull;
