@@ -31,6 +31,27 @@ ConvexHull<T>::~ConvexHull()
 template<class T>
 Poligono<T> ConvexHull<T>::giftWrapping(Punto<T>* cloud)
 {
+//     Punto<T> pointOnHull = "leftmost point in cloud";
+//     int i = 0;
+//     Punto<T> endpoint;
+//     do
+//     {
+//         Punto<T> *P = new Punto<T>[sizeof(cloud)]();
+//         Punto<T> endpoint = cloud[0];
+//         for (int j = 1; j < sizeof(cloud); ++j)
+//         {
+//             Segmento seg(P[i], endpoint);
+//             if (endpoint == pointOnHull or seg.isThisPointAtLeft(cloud[j]))
+//             {
+//                 endpoint = cloud[j];
+//             }
+//         }
+//         ++i;
+//         pointOnHull = endpoint;
+//     } while (endpoint != cloud[0]);
+//
+//     return Polygon(P);
+
     Poligono<T> wrap(0);
     return wrap;
 }

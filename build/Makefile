@@ -169,6 +169,33 @@ tarea_2/fast:
 	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/build
 .PHONY : tarea_2/fast
 
+Stopwatch.o: Stopwatch.cpp.o
+
+.PHONY : Stopwatch.o
+
+# target to build an object file
+Stopwatch.cpp.o:
+	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/Stopwatch.cpp.o
+.PHONY : Stopwatch.cpp.o
+
+Stopwatch.i: Stopwatch.cpp.i
+
+.PHONY : Stopwatch.i
+
+# target to preprocess a source file
+Stopwatch.cpp.i:
+	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/Stopwatch.cpp.i
+.PHONY : Stopwatch.cpp.i
+
+Stopwatch.s: Stopwatch.cpp.s
+
+.PHONY : Stopwatch.s
+
+# target to generate assembly for a file
+Stopwatch.cpp.s:
+	$(MAKE) -f CMakeFiles/tarea_2.dir/build.make CMakeFiles/tarea_2.dir/Stopwatch.cpp.s
+.PHONY : Stopwatch.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -209,6 +236,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... Stopwatch.o"
+	@echo "... Stopwatch.i"
+	@echo "... Stopwatch.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

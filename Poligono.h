@@ -61,6 +61,22 @@ public:
     */
     bool isInside(Punto<T> p) const;
 
+    /**
+    * @brief Overload del operador de igualdad.
+    *
+    * @param p p_p: Polígono a comparar.
+    * @return bool True si son iguales.
+    */
+    bool operator==(const Poligono &p);
+
+    /**
+    * @brief Overload del operador de desigualdad.
+    *
+    * @param p p_p: Polígono a comparar.
+    * @return bool True si son distintos.
+    */
+    bool operator!=(const Poligono &p);
+
 private:
     int numLados;
     vector<Punto<T>> listPuntos;
@@ -165,6 +181,18 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
         cout << " (" << P.getX() << ", " << P.getY() << ")" << endl;
     }
     return out;
+}
+
+template<class T>
+bool Poligono<T>::operator==(const Poligono<T>& p)
+{
+    return false;
+}
+
+template<class T>
+bool Poligono<T>::operator!=(const Poligono<T>& p)
+{
+    return not (*this == p);
 }
 
 #endif // POLIGONO_H

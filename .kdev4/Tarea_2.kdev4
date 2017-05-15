@@ -33,3 +33,6 @@ Project Target=Tarea_2,tarea_2
 Use External Terminal=false
 Working Directory=
 isExecutable=false
+
+[Project]
+VersionControlSupport=kdevgit
