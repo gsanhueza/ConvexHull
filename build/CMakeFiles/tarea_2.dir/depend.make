@@ -6,6 +6,7 @@ CMakeFiles/tarea_2.dir/Stopwatch.cpp.o: ../Stopwatch.h
 
 CMakeFiles/tarea_2.dir/main.cpp.o: ../ConvexHull.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Generator.h
+CMakeFiles/tarea_2.dir/main.cpp.o: ../Logger.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Poligono.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Punto.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Stopwatch.h

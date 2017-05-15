@@ -7,6 +7,7 @@
 
 #include "Generator.h"
 #include "Stopwatch.h"
+#include "Logger.h"
 
 using namespace std;
 
@@ -37,37 +38,32 @@ int main(void) {
     qhTime = stopwatch.end();
 
     // Logging
-    ofstream output("ANALISIS", ios::out);
+    Logger logger("ANALISIS");
 
-    output << "Análisis de resultados para " << numPoints << " puntos." << endl << endl;
+    logger << "Análisis de resultados para " << numPoints << " puntos." << endl << endl;
+    cout << endl << endl;
 
-    output << "Tiempo de ejecución de Gift Wrapping: " << gwTime << " nanosegundos." << endl;
-    output << "Tiempo de ejecución de Quick Hull   : " << qhTime << " nanosegundos." << endl;
+    logger << "Tiempo de ejecución de Gift Wrapping: " << gwTime << " nanosegundos." << endl;
+    cout << endl;
+    logger << "Tiempo de ejecución de Quick Hull   : " << qhTime << " nanosegundos." << endl;
+    cout << endl;
 
     // Chequeo de igualdad
     if (gw != qh)
     {
-        output << "Polígonos no son iguales." << endl;
+        logger << "Polígonos no son iguales." << endl;
     }
     else
     {
-        output << "Polígonos iguales, ConvexHull creado correctamente." << endl;
+        logger << "Polígonos iguales, ConvexHull creado correctamente." << endl;
     }
+    cout << endl;
 
-    output << "- - - - -" << endl;
+    logger << "- - - - -" << endl;
+    cout << endl;
 
     delete [] cloud;
-    output.close();
-
-    // Lectura de logging
-    ifstream input("ANALISIS", ios::in);
-
-    for (string line; getline(input, line);)
-    {
-        cout << line << endl;
-    }
-
-    input.close();
+    logger.close();
 
     return 0;
 }
