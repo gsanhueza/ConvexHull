@@ -35,20 +35,27 @@ Poligono<T> ConvexHull<T>::giftWrapping(Punto<T> **cloud, const int numPoints)
         P[k] = nullptr;
     }
 
+    // Algoritmo principal
+    cout << "Punto más a la izquierda es: " << *pointOnHull << endl;
     do
     {
         P[i] = new Punto<T>(*pointOnHull);
-        *endpoint = *cloud[0];
+        cout << endl << "Punto actualmente en hull: " << *P[i] << endl;
+        endpoint = new Punto<T>(*cloud[0]);
         for (int j = 1; j < numPoints; ++j)
         {
             Segmento<T> seg(*P[i], *endpoint);
             if (*endpoint == *pointOnHull or seg.isThisPointAtLeft(*cloud[j]))
             {
-                *endpoint = *cloud[j];
+                endpoint = new Punto<T>(*cloud[j]);
+                cout << "Endpoint re-actualizado: " << *endpoint << endl;
             }
         }
         ++i;
-        *pointOnHull = *endpoint;
+        pointOnHull = new Punto<T>(*endpoint);
+        cout << "Chequeando salida: *endpoint = " << *endpoint << endl;
+        cout << "Chequeando salida: *cloud[0] = " << *cloud[0] << endl;
+        cout << "---" << endl;
     } while (not (*endpoint == *cloud[0]));
 
     // Detectamos puntos en ConvexHull
