@@ -9,6 +9,8 @@
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/ConvexHull.h
 Punto.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
+Segmento.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Segmento.h
 Poligono.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Poligono.h
 
@@ -34,6 +36,12 @@ Punto.h
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
 iostream
+-
+
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Segmento.h
+Punto.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
+math.h
 -
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.cpp

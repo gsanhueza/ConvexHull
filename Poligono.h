@@ -29,9 +29,17 @@ public:
     /**
     * @brief Constructor del polígono. Puede recibir una cantidad indeterminada de puntos.
     *
-    * @param n p_n: Numero de puntos que tendrá el polígono.
+    * @param n p_n: Número de puntos que tendrá el polígono.
     */
     Poligono(int n, ...);
+
+    /**
+    * @brief Constructor del polígono. Recibe un arreglo (punteros) de Puntos.
+    *
+    * @param n p_n: Número de puntos que tendrá el polígono.
+    * @param array p_array: Arreglo de Puntos (puntero).
+    */
+    Poligono(int n, Punto<T>** array);
 
     /**
     * @brief Destructor del polígono.
@@ -100,6 +108,15 @@ Poligono<T>::Poligono(int n, ...) : numLados(n)
         listPuntos.push_back(va_arg(ap, Punto<T>));
     }
     va_end(ap);
+}
+
+template<class T>
+Poligono<T>::Poligono(int n, Punto<T>** array) : numLados(n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        listPuntos.push_back(*array[i]);
+    }
 }
 
 template<class T>

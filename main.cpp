@@ -18,7 +18,7 @@ using namespace std;
 */
 int main(void) {
     // Creación de nube de puntos
-    int numPoints = static_cast<int>(pow(2, 8));
+    int numPoints = static_cast<int>(pow(2, 3));
     Punto<int> **cloud = Generator<int>::generateRandomCloud(numPoints);
 
     // Creación de convex hulls
@@ -30,12 +30,14 @@ int main(void) {
     int qhTime;
 
     stopwatch.start();
-    Poligono<int> gw = calculator.giftWrapping(cloud);
+    Poligono<int> gw = calculator.giftWrapping(cloud, numPoints);
     gwTime = stopwatch.end();
 
     stopwatch.start();
-    Poligono<int> qh = calculator.quickHull(cloud);
+    Poligono<int> qh = calculator.quickHull(cloud, numPoints);
     qhTime = stopwatch.end();
+
+    cout << gw << endl;
 
     // Logging
     Logger logger("ANALISIS");

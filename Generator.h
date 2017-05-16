@@ -29,7 +29,6 @@ Punto<T> ** Generator<T>::generateRandomCloud(const int numPoints)
     return cloud;
 }
 
-// TODO Aleatorizador
 template<typename T>
 T Generator<T>::getRandomNumber(const int lower, const int upper)
 {
