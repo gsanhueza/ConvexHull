@@ -25,25 +25,35 @@ Poligono<T> ConvexHull<T>::giftWrapping(Punto<T> **cloud, const int numPoints)
 {
 
     Punto<T> *pointOnHull = leftmostPoint(cloud);
-    Punto<T> *endpoint = nullptr;
+    Punto<T> *endpoint = new Punto<T>();
     Punto<T> **P = new Punto<T>*[numPoints];
     int i = 0;
 
+    // Inicializador de puntos nuevos, no se usarán todos
+    // FIXME Si no se usan todos, entonces hay que saber cuáles sí se usan, y pasarlos al polígono nuevo!
+    for (int k = 0; k < numPoints; k++)
+    {
+        P[k] = new Punto<T>();
+    }
+
     do
     {
-        P[i] = pointOnHull;
-        endpoint = cloud[0];
+        *P[i] = *pointOnHull;
+        *endpoint = *cloud[0];
         for (int j = 1; j < numPoints; ++j)
         {
             Segmento<T> seg(*P[i], *endpoint);
-            if (endpoint == pointOnHull or seg.isThisPointAtLeft(*cloud[j]))
+            if (*endpoint == *pointOnHull or seg.isThisPointAtLeft(*cloud[j]))
             {
-                endpoint = cloud[j];
+                *endpoint = *cloud[j];                      // FIXME Funciona si le saco los punteros, pero no debería caerse aquí...
             }
         }
         ++i;
-        pointOnHull = endpoint;
-    } while (endpoint != cloud[0] and i <= numPoints);
+        cout << "cloud[0] is     " << *cloud[0] << endl;
+        cout << "pointOnHull was " << *pointOnHull << endl;
+        cout << "and endpoint is " << *endpoint << endl << endl;
+        *pointOnHull = *endpoint;
+    } while (not (*endpoint == *cloud[0]));
 
     return Poligono<T>(numPoints, P);
 }
