@@ -197,13 +197,29 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
     return out;
 }
 
-// FIXME Arreglar operador de igualdad
 template<class T>
 bool Poligono<T>::operator==(Poligono<T>& p)
 {
+    // Caso trivial, tamaños iguales o distintos
+    if (listPuntos.size() != p.listPuntos.size())
+    {
+        return false;
+    }
+    // Detección de offset
+    int offset = 0;
     for (int i = 0; i < listPuntos.size(); i++)
     {
-        if (not (listPuntos.at(i) == p.listPuntos.at(i)))
+        if (listPuntos.at(0) == p.listPuntos.at(i))
+        {
+            offset = i;
+            break;
+        }
+    }
+
+    // Comparación real
+    for (int i = 0; i < listPuntos.size(); i++)
+    {
+        if (not (listPuntos.at(i) == p.listPuntos.at((i + offset) % listPuntos.size())))
         {
             return false;
         }

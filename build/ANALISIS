@@ -1,6 +1,13 @@
-Análisis de resultados para 8 puntos.
+Análisis de resultados para 1024 puntos.
 
-Tiempo de ejecución de Gift Wrapping: 145627 nanosegundos.
-Tiempo de ejecución de Quick Hull   : 136058 nanosegundos.
-Polígonos iguales, ConvexHull creado correctamente.
+Tiempo de ejecución de Gift Wrapping: 23798020 nanosegundos.
+Tiempo de ejecución de Graham Scan  : 87650011 nanosegundos.
+Polígonos no son iguales.
+Polígono de 16 lados.
+Coordenadas: 
+
+
+Polígono de 15 lados.
+Coordenadas: 
+
 - - - - -

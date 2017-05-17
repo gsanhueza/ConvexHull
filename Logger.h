@@ -8,7 +8,7 @@ using namespace std;
 class Logger : public ofstream
 {
 public:
-    Logger(const string& fileName);
+    explicit Logger(const string& fileName);
 };
 
 Logger::Logger(const string& fileName) : ofstream(fileName)

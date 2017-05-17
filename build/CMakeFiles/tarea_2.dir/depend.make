@@ -11,5 +11,6 @@ CMakeFiles/tarea_2.dir/main.cpp.o: ../Poligono.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Punto.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Segmento.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../Stopwatch.h
+CMakeFiles/tarea_2.dir/main.cpp.o: ../Vector.h
 CMakeFiles/tarea_2.dir/main.cpp.o: ../main.cpp
 
