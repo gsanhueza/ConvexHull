@@ -16,7 +16,7 @@ class ConvexHull
 {
 public:
     Poligono<T> giftWrapping(vector<Punto<T>> &cloud);
-    Poligono<T> grahamScan(vector<Punto<T>> cloud);
+    Poligono<T> grahamScan(vector<Punto<T>> &cloud);
 
 private:
     Punto<T> leftmostPoint(vector<Punto<T>> &cloud);
@@ -59,7 +59,7 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
 }
 
 template<class T>
-Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
+Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 {
     int lowestPos = 0;
     lowestPoint(cloud, lowestPos);

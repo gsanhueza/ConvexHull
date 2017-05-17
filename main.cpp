@@ -52,9 +52,9 @@ int main(void) {
     if (gw != qh)
     {
         logger << "Polígonos no son iguales." << endl;
-        logger << gw << endl;
-        logger << endl;
-        logger << qh << endl;
+        cout << gw << endl;
+        cout << " v/s " << endl;
+        cout << qh << endl;
     }
     else
     {
