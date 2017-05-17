@@ -34,11 +34,15 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoi
     // Algoritmo principal
     do
     {
+        cout << "pointOnHull = " << pointOnHull << endl;
         P.push_back(pointOnHull);                           // P[i] = pointOnHull
         endpoint = Punto<T>(cloud.at(0));
         for (int j = 1; j < numPoints; ++j)
         {
             Segmento<T> seg(P.at(i), endpoint);
+            cout << "Seg temporal = " << seg << endl;
+            cout << "Comparando si " << cloud.at(j) << " está o no a la izquierda..." << endl;
+            // FIXME Podría ser que el isThisPointAtLeft esté malo?
             if (endpoint == pointOnHull or seg.isThisPointAtLeft(cloud.at(j)))
             {
                 endpoint = cloud.at(j);
@@ -46,6 +50,7 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoi
         }
         ++i;
         pointOnHull = endpoint;
+        cout << " UPDATED pointOnHull = " << pointOnHull << endl;
     } while (not (endpoint == cloud.at(0)));
 
     return Poligono<T>(P.size(), P);
