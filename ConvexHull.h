@@ -56,7 +56,7 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
     return Poligono<T>(P.size(), P);
 }
 
-// TODO grahamScan
+// FIXME grahamScan
 template<class T>
 Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
 {
@@ -65,10 +65,7 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
 
     swapPoints(cloud, 0, lowestPos);
     Punto<T> p0(cloud.at(0));
-    cout << "Test1" << endl;
     polarSort(cloud, 1);
-    cout << "Test2" << endl;
-    cout << Poligono<T>(cloud.size(), cloud) << endl;
 
     int M = 1;
 
@@ -84,10 +81,13 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
     }
 
     vector<Punto<T>> hull;
-    hull.push_back(cloud[0]);
-    hull.push_back(cloud[1]);
-    hull.push_back(cloud[2]);
+    hull.push_back(cloud.at(0));
+    hull.push_back(cloud.at(1));
+    hull.push_back(cloud.at(2));
 
+    cout << "Test1: M = " << M << endl;
+
+    // FIXME Hay un error por aquí
     for (int i = 3; i < M; i++)
     {
         while (orientation(hull.at(1), hull.front(), cloud.at(i)) != 2)
@@ -152,15 +152,14 @@ void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int a, const int 
     cloud.at(b) = temp;
 }
 
-// FIXME polarSort
 template<class T>
 void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, const int targetPos)
 {
     sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
-        Punto<T> p0;
+        Punto<T> p0(cloud.at(0));
         int o = orientation(p0, p1, p2);
         if (o == 0)
-            return (distSq(p0, p2) >= distSq(p0, p1));
+            return (distSq(p0, p2) < distSq(p0, p1));
 
         return (o == 2);
     });
@@ -173,7 +172,7 @@ int ConvexHull<T>::orientation(Punto<T> p, Punto<T> q, Punto<T> r)
                 (q.getX() - p.getX()) * (r.getY() - q.getY());
 
     if (val == 0) return 0;                                 // colinear
-    return (val > 0)? 1: 2;                                 // clock or counterclock wise
+    return (val > 0) ? 1 : 2;                               // clock or counterclock wise
 }
 
 template<class T>
