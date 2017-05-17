@@ -1,5 +1,5 @@
-#include <fstream>
 #include <cmath>
+#include <vector>
 
 #include "Punto.h"
 #include "Poligono.h"
@@ -19,31 +19,21 @@ using namespace std;
 int main(void) {
     // Creación de nube de puntos
     int numPoints = static_cast<int>(pow(2, 3));
-    Punto<int> **cloud = Generator<int>::generateRandomCloud(numPoints);
+    vector<Punto<int>> cloud = Generator<int>::generateRandomCloud(numPoints);
 
     // Creación de convex hulls
     ConvexHull<int> calculator;
 
     // TESTING
     // FIXME Loop
-    cloud[0] = new Punto<int>(768, 703);
-    cloud[1] = new Punto<int>(404, 161);
-    cloud[2] = new Punto<int>(894, 325);
-    cloud[3] = new Punto<int>(503, 711);
-    cloud[4] = new Punto<int>(711, 410);
-    cloud[5] = new Punto<int>(690, 905);
-    cloud[6] = new Punto<int>(841, 88);
-    cloud[7] = new Punto<int>(461, 300);
-
-    // FIXME Segfault
-    cloud[0] = new Punto<int>(404, 161);
-    cloud[1] = new Punto<int>(768, 703);
-    cloud[2] = new Punto<int>(894, 325);
-    cloud[3] = new Punto<int>(503, 711);
-    cloud[4] = new Punto<int>(711, 410);
-    cloud[5] = new Punto<int>(690, 905);
-    cloud[6] = new Punto<int>(841, 88);
-    cloud[7] = new Punto<int>(461, 300);
+    cloud[0] = Punto<int>(768, 703);
+    cloud[1] = Punto<int>(404, 161);
+    cloud[2] = Punto<int>(894, 325);
+    cloud[3] = Punto<int>(503, 711);
+    cloud[4] = Punto<int>(711, 410);
+    cloud[5] = Punto<int>(690, 905);
+    cloud[6] = Punto<int>(841, 88);
+    cloud[7] = Punto<int>(461, 300);
 
     // Tiempo transcurrido
     Stopwatch stopwatch;
@@ -85,7 +75,6 @@ int main(void) {
     logger << "- - - - -" << endl;
     cout << endl;
 
-    delete [] cloud;
     logger.close();
 
     return 0;

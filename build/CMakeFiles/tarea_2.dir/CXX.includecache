@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/ConvexHull.h
+vector
+-
 Punto.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
 Segmento.h
@@ -16,6 +18,8 @@ Poligono.h
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Generator.h
 ctime
+-
+vector
 -
 Punto.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
@@ -55,9 +59,9 @@ chrono
 -
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/main.cpp
-fstream
--
 cmath
+-
+vector
 -
 Punto.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h

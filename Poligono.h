@@ -39,7 +39,7 @@ public:
     * @param n p_n: Número de puntos que tendrá el polígono.
     * @param array p_array: Arreglo de Puntos (puntero).
     */
-    Poligono(int n, Punto<T>** array);
+    Poligono(int n, vector<Punto<T>> array);
 
     /**
     * @brief Destructor del polígono.
@@ -111,12 +111,9 @@ Poligono<T>::Poligono(int n, ...) : numLados(n)
 }
 
 template<class T>
-Poligono<T>::Poligono(int n, Punto<T>** array) : numLados(n)
+Poligono<T>::Poligono(int n, vector<Punto<T>> array) : numLados(n)
 {
-    for (int i = 0; i < n; ++i)
-    {
-        listPuntos.push_back(*array[i]);
-    }
+    listPuntos = array;
 }
 
 template<class T>
@@ -200,6 +197,7 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
     return out;
 }
 
+// TODO Implementar operador de igualdad
 template<class T>
 bool Poligono<T>::operator==(const Poligono<T>& p)
 {
