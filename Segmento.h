@@ -139,33 +139,25 @@ ostream& operator<<(ostream &out, const Segmento<U> &s)
 template<class T>
 bool Segmento<T>::isThisPointAtLeft(const Punto<T>& p)
 {
-    if (abs(m_a.getX() - m_b.getX()) < 0.001)               // epsilon magic
-        return p.getX() < m_b.getX();
+    vector<Punto<T>> points;
+    points.push_back(m_a);
+    points.push_back(m_b);
+    points.push_back(p);
+    Poligono<T> tester(3, points);
 
-    // Usando ecuación de la recta
-    double m = 1.0 * (m_b.getY() - m_a.getY()) / (m_b.getX() - m_a.getX());
-    double b = m_b.getY() - (m * m_b.getX());
-    double expected_y = m * p.getX() + b;
-
-    // Si el punto P está arriba de lo esperado para el mismo X
-    // y la pendiente es positiva, está a la izquierda
-    return ((m > 0 ? 1 : -1) * expected_y < p.getY());
+    return tester.isCCW();
 }
 
 template<class T>
 bool Segmento<T>::isThisPointAtRight(const Punto<T>& p)
 {
-    if (abs(m_a.getX() - m_b.getX()) < 0.001)               // epsilon magic
-        return p.getX() > m_b.getX();
+    vector<Punto<T>> points;
+    points.push_back(m_a);
+    points.push_back(m_b);
+    points.push_back(p);
+    Poligono<T> tester(3, points);
 
-    // Usando ecuación de la recta
-    double m = 1.0 * (m_b.getY() - m_a.getY()) / (m_b.getX() - m_a.getX());
-    double b = m_b.getY() - (m * m_b.getX());
-    double expected_y = m * p.getX() + b;
-
-    // Si el punto P está debajo de lo esperado para el mismo X
-    // y la pendiente es positiva, está a la derecha
-    return ((m > 0 ? 1 : -1) * expected_y > p.getY());
+    return not tester.isCCW() and tester.area() > 0;
 }
 
 template<class T>
