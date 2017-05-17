@@ -44,7 +44,7 @@ int main(void) {
     gwTime = stopwatch.end();
 
     stopwatch.start();
-    Poligono<int> qh = calculator.quickHull(cloud);
+    Poligono<int> qh = calculator.grahamScan(cloud);
     qhTime = stopwatch.end();
 
     cout << gw << endl;                                     // TODO Borrar esto cuando esté listo
@@ -57,7 +57,7 @@ int main(void) {
 
     logger << "Tiempo de ejecución de Gift Wrapping: " << gwTime << " nanosegundos." << endl;
     cout << endl;
-    logger << "Tiempo de ejecución de Quick Hull   : " << qhTime << " nanosegundos." << endl;
+    logger << "Tiempo de ejecución de Graham Scan  : " << qhTime << " nanosegundos." << endl;
     cout << endl;
 
     // Chequeo de igualdad

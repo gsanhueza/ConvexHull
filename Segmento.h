@@ -106,7 +106,7 @@ Segmento<T>::Segmento(Punto<T> x, Punto<T> y) : m_a(x), m_b(y)
 }
 
 template<class T>
-Segmento<T>::Segmento(const Segmento<T>& other) : m_a(other.m_a), m_b(other.m_b)
+Segmento<T>::Segmento(const Segmento<T>& other) : m_a(other.m_a), m_b(other.m_b), length(other.length)
 {
 }
 
@@ -120,6 +120,7 @@ Segmento<T> & Segmento<T>::operator=(const Segmento<T>& s)
 {
     m_a = s.m_a;
     m_b = s.m_b;
+    length = s.m_length;
     return *this;
 }
 

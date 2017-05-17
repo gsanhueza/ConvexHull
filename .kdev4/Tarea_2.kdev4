@@ -1,6 +1,3 @@
-[Buildset]
-BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x0e\x00T\x00a\x00r\x00e\x00a\x00_\x002)
-
 [CMake]
 Build Directory Count=1
 Current Build Directory Index=0
@@ -11,7 +8,7 @@ Build Type=Debug
 CMake Binary=/usr/bin/cmake
 Environment Profile=
 Extra Arguments=
-Install Directory=
+Install Directory=/usr/local
 
 [Launch]
 Launch Configurations=Launch Configuration 0
@@ -19,7 +16,7 @@ Launch Configurations=Launch Configuration 0
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=tarea_2
+Name=tarea2
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
