@@ -53,10 +53,11 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
         pointOnHull = endpoint;
     } while (not (endpoint == P.at(0)));
 
+    reverse(P.begin(), P.end());                            // Convertir a CCW
+
     return Poligono<T>(P.size(), P);
 }
 
-// FIXME grahamScan
 template<class T>
 Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
 {
@@ -85,12 +86,9 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
     hull.push_back(cloud.at(1));
     hull.push_back(cloud.at(2));
 
-    cout << "Test1: M = " << M << endl;
-
-    // FIXME Hay un error por aquí
     for (int i = 3; i < M; i++)
     {
-        while (orientation(hull.at(1), hull.front(), cloud.at(i)) != 2)
+        while (orientation(hull.at(hull.size() - 2), hull.back(), cloud.at(i)) != 2)
         {
             hull.pop_back();
         }
@@ -171,8 +169,8 @@ int ConvexHull<T>::orientation(Punto<T> p, Punto<T> q, Punto<T> r)
     int val = (q.getY() - p.getY()) * (r.getX() - q.getX()) -
                 (q.getX() - p.getX()) * (r.getY() - q.getY());
 
-    if (val == 0) return 0;                                 // colinear
-    return (val > 0) ? 1 : 2;                               // clock or counterclock wise
+    if (val == 0) return 0;                                 // Colineal
+    return (val > 0) ? 1 : 2;                               // CW o CCW
 }
 
 template<class T>

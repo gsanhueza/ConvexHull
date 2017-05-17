@@ -18,21 +18,11 @@ using namespace std;
 */
 int main(void) {
     // Creación de nube de puntos
-    int numPoints = static_cast<int>(pow(2, 3));
+    int numPoints = static_cast<int>(pow(2, 10));
     vector<Punto<int>> cloud = Generator<int>::generateRandomCloud(numPoints);
 
     // Creación de convex hulls
     ConvexHull<int> calculator;
-
-    // TESTING
-    cloud[0] = Punto<int>(768, 703);
-    cloud[1] = Punto<int>(404, 161);
-    cloud[2] = Punto<int>(894, 325);
-    cloud[3] = Punto<int>(503, 711);
-    cloud[4] = Punto<int>(711, 410);
-    cloud[5] = Punto<int>(690, 905);
-    cloud[6] = Punto<int>(841, 88);
-    cloud[7] = Punto<int>(461, 300);
 
     // Tiempo transcurrido
     Stopwatch stopwatch;
@@ -46,8 +36,6 @@ int main(void) {
     stopwatch.start();
     Poligono<int> qh = calculator.grahamScan(cloud);
     qhTime = stopwatch.end();
-
-    cout << gw << endl;                                     // TODO Borrar esto cuando esté listo
 
     // Logging
     Logger logger("ANALISIS");
@@ -64,6 +52,9 @@ int main(void) {
     if (gw != qh)
     {
         logger << "Polígonos no son iguales." << endl;
+        logger << gw << endl;
+        logger << endl;
+        logger << qh << endl;
     }
     else
     {
