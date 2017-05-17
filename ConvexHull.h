@@ -24,6 +24,7 @@ private:
     void swapPoints(vector<Punto<T>> &cloud, const int a, const int b);
     void polarSort(vector<Punto<T>> &cloud, const int targetPos);
     int orientation(Punto<T> p, Punto<T> q, Punto<T> r);
+    int distSq(Punto<T> p1, Punto<T> p2);
 };
 
 template<class T>
@@ -61,43 +62,25 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> cloud)
 {
     int lowestPos = 0;
     lowestPoint(cloud, lowestPos);
+
     swapPoints(cloud, 0, lowestPos);
-
-    // sort points by polar angle with points[1]
-    polarSort(cloud, 1);
-
-    // We want points[0] to be a sentinel point that will stop the loop.
-    swapPoints(cloud, 0, cloud.size() - 1);
+    Punto<T> p0(cloud.at(0));
     cout << "Test1" << endl;
+    polarSort(cloud, 1);
+    cout << "Test2" << endl;
+    cout << Poligono<T>(cloud.size(), cloud) << endl;
 
-    // M will denote the number of points on the convex hull.
     int M = 1;
+
     for (int i = 1; i < cloud.size(); i++)
     {
-        vector<Punto<T>> temp;
-        temp.push_back(cloud.at(M - 1));
-        temp.push_back(cloud.at(M ));
-        temp.push_back(cloud.at(i));
-
-        while (not (Poligono<T>(3, temp).isCCW()))
+        while (i < cloud.size() - 1 and orientation(p0, cloud.at(i), cloud.at(i + 1)) == 0)
         {
-            if (M > 1)
-            {
-                M -= 1;
-                continue;
-            }
-            else if (i == cloud.size())
-            {
-                break;
-            }
-            else
-            {
-                i++;
-            }
+            i++;
         }
 
-        M += 1;
         cloud.at(M) = cloud.at(i);
+        M++;
     }
 
     vector<Punto<T>> hull;
@@ -173,12 +156,13 @@ void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int a, const int 
 template<class T>
 void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, const int targetPos)
 {
-    sort(cloud.begin(), cloud.end(), [=](Punto<T> a, Punto<T> b) {
-        Vector<T> xCoordVec(1, 0, 0);
-        Vector<T> testerA(a.getX() - cloud.at(targetPos).getX(), a.getY() - cloud.at(targetPos).getY(), 0);
-        Vector<T> testerB(b.getX() - cloud.at(targetPos).getX(), b.getY() - cloud.at(targetPos).getY(), 0);
+    sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
+        Punto<T> p0;
+        int o = orientation(p0, p1, p2);
+        if (o == 0)
+            return (distSq(p0, p2) >= distSq(p0, p1));
 
-        return testerA.dotProduct(xCoordVec) > testerB.dotProduct(xCoordVec);
+        return (o == 2);
     });
 }
 
@@ -191,5 +175,13 @@ int ConvexHull<T>::orientation(Punto<T> p, Punto<T> q, Punto<T> r)
     if (val == 0) return 0;                                 // colinear
     return (val > 0)? 1: 2;                                 // clock or counterclock wise
 }
+
+template<class T>
+int ConvexHull<T>::distSq(Punto<T> p1, Punto<T> p2)
+{
+    return (p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) +
+    (p1.getY() - p2.getY()) * (p1.getY() - p2.getY());
+}
+
 
 #endif // CONVEX_HULL_H
