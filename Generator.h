@@ -1,6 +1,7 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 #include <ctime>
+#include <vector>
 #include "Punto.h"
 
 using namespace std;
@@ -9,21 +10,21 @@ template<class T>
 class Generator
 {
 public:
-    static Punto<T>** generateRandomCloud(const int numPoints);
+    static vector<Punto<T>> generateRandomCloud(const int numPoints);
 
 private:
     static T getRandomNumber(const int lower, const int upper);
 };
 
 template<class T>
-Punto<T> ** Generator<T>::generateRandomCloud(const int numPoints)
+vector<Punto<T>> Generator<T>::generateRandomCloud(const int numPoints)
 {
     srand(time(0));
-    Punto<T> **cloud = new Punto<T>*[numPoints];
+    vector<Punto<T>> cloud;
 
     for (int i = 0; i < numPoints; i++)
     {
-        cloud[i] = new Punto<T>(getRandomNumber(0, 1000), getRandomNumber(0, 1000));
+        cloud.push_back(Punto<T>(getRandomNumber(0, 1000), getRandomNumber(0, 1000)));
     }
 
     return cloud;

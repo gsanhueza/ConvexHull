@@ -1,6 +1,8 @@
 #ifndef CONVEX_HULL_H
 #define CONVEX_HULL_H
 
+#include <vector>
+
 #include "Punto.h"
 #include "Segmento.h"
 #include "Poligono.h"
@@ -12,71 +14,49 @@ template<class T>
 class ConvexHull
 {
 public:
-    Poligono<T> giftWrapping(Punto<T> **cloud, const int numPoints);
-    Poligono<T> quickHull(Punto<T> **cloud, const int numPoints);
+    Poligono<T> giftWrapping(vector<Punto<T>> cloud, const int numPoints);
+    Poligono<T> quickHull(vector<Punto<T>> cloud, const int numPoints);
 
 private:
-    Punto<T>* leftmostPoint(Punto<T> **cloud, const int numPoints);
+    Punto<T> leftmostPoint(vector<Punto<T>> cloud, const int numPoints);
 };
 
 // FIXME Está mal implementado, se repiten 2 puntos todo el rato o se cae solo, revisar main...
 template<class T>
-Poligono<T> ConvexHull<T>::giftWrapping(Punto<T> **cloud, const int numPoints)
+Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoints)
 {
+    Punto<T> pointOnHull = leftmostPoint(cloud, numPoints);
+    Punto<T> endpoint;
+    vector<Punto<T>> P;
 
-    Punto<T> *pointOnHull = leftmostPoint(cloud, numPoints);
-    Punto<T> *endpoint = new Punto<T>();
-    Punto<T> **P = new Punto<T>*[numPoints];
     int i = 0;
 
-    // Inicializador de puntos nuevos, no se usarán todos
-    for (int k = 0; k < numPoints; k++)
-    {
-        P[k] = nullptr;
-    }
-
     // Algoritmo principal
-    cout << "Punto más a la izquierda es: " << *pointOnHull << endl;
     do
     {
-        P[i] = new Punto<T>(*pointOnHull);
-        cout << endl << "Punto actualmente en hull: " << *P[i] << endl;
-        endpoint = new Punto<T>(*cloud[0]);
+        P.push_back(pointOnHull);                           // P[i] = pointOnHull
+        endpoint = Punto<T>(cloud.at(0));
         for (int j = 1; j < numPoints; ++j)
         {
-            Segmento<T> seg(*P[i], *endpoint);
-            if (*endpoint == *pointOnHull or seg.isThisPointAtLeft(*cloud[j]))
+            Segmento<T> seg(P.at(i), endpoint);
+            if (endpoint == pointOnHull or seg.isThisPointAtLeft(cloud.at(j)))
             {
-                endpoint = new Punto<T>(*cloud[j]);
-                cout << "Endpoint re-actualizado: " << *endpoint << endl;
+                endpoint = cloud.at(j);
             }
         }
         ++i;
-        pointOnHull = new Punto<T>(*endpoint);
-        cout << "Chequeando salida: *endpoint = " << *endpoint << endl;
-        cout << "Chequeando salida: *cloud[0] = " << *cloud[0] << endl;
-        cout << "---" << endl;
-    } while (not (*endpoint == *cloud[0]));
+        pointOnHull = endpoint;
+    } while (not (endpoint == cloud.at(0)));
 
-    // Detectamos puntos en ConvexHull
-    int k = 0;
-    for (; k < numPoints; k++)
-    {
-        if (P[k] == nullptr)
-        {
-            break;
-        }
-    }
-
-    return Poligono<T>(k, P);
+    return Poligono<T>(P.size(), P);
 }
 
 template<class T>
-Poligono<T> ConvexHull<T>::quickHull(Punto<T> **cloud, const int numPoints)
+Poligono<T> ConvexHull<T>::quickHull(vector<Punto<T>> cloud, const int numPoints)
 {
     for (int i = 0; i < numPoints; i++)
     {
-        cout << *cloud[i] << endl;
+        cout << cloud.at(i) << endl;
     }
 
     Poligono<T> hull(numPoints, cloud);
@@ -84,16 +64,16 @@ Poligono<T> ConvexHull<T>::quickHull(Punto<T> **cloud, const int numPoints)
 }
 
 template<class T>
-Punto<T> * ConvexHull<T>::leftmostPoint(Punto<T> **cloud, const int numPoints)
+Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> cloud, const int numPoints)
 {
-    Punto<T> *leftmost = cloud[0];
+    Punto<T> leftmost = cloud.at(0);
     int i = 0;
 
     for (i = 1; i < numPoints; i++)
     {
-        if (cloud[i]->getX() < leftmost->getX())
+        if (cloud.at(i).getX() < leftmost.getX())
         {
-            *leftmost = *cloud[i];
+            leftmost = cloud[i];
         }
     }
 
