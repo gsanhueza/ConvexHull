@@ -75,7 +75,7 @@ public:
     * @param p p_p: Polígono a comparar.
     * @return bool True si son iguales.
     */
-    bool operator==(const Poligono &p);
+    bool operator==(Poligono &p);
 
     /**
     * @brief Overload del operador de desigualdad.
@@ -83,7 +83,7 @@ public:
     * @param p p_p: Polígono a comparar.
     * @return bool True si son distintos.
     */
-    bool operator!=(const Poligono &p);
+    bool operator!=(Poligono &p);
 
 private:
     int numLados;
@@ -197,15 +197,22 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
     return out;
 }
 
-// TODO Implementar operador de igualdad
+// FIXME Arreglar operador de igualdad
 template<class T>
-bool Poligono<T>::operator==(const Poligono<T>& p)
+bool Poligono<T>::operator==(Poligono<T>& p)
 {
-    return false;
+    for (int i = 0; i < listPuntos.size(); i++)
+    {
+        if (not (listPuntos.at(i) == p.listPuntos.at(i)))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 template<class T>
-bool Poligono<T>::operator!=(const Poligono<T>& p)
+bool Poligono<T>::operator!=(Poligono<T>& p)
 {
     return not (*this == p);
 }

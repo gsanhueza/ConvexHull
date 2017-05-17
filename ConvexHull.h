@@ -9,23 +9,21 @@
 
 using namespace std;
 
-// TODO Implementar los algoritmos de Convex Hull
 template<class T>
 class ConvexHull
 {
 public:
-    Poligono<T> giftWrapping(vector<Punto<T>> cloud, const int numPoints);
-    Poligono<T> quickHull(vector<Punto<T>> cloud, const int numPoints);
+    Poligono<T> giftWrapping(vector<Punto<T>> cloud);
+    Poligono<T> quickHull(vector<Punto<T>> cloud);
 
 private:
-    Punto<T> leftmostPoint(vector<Punto<T>> cloud, const int numPoints);
+    Punto<T> leftmostPoint(vector<Punto<T>> cloud);
 };
 
-// FIXME Está mal implementado, se repiten 2 puntos todo el rato o se cae solo, revisar main...
 template<class T>
-Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoints)
+Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud)
 {
-    Punto<T> pointOnHull = leftmostPoint(cloud, numPoints);
+    Punto<T> pointOnHull = leftmostPoint(cloud);
     Punto<T> endpoint;
     vector<Punto<T>> P;
 
@@ -34,13 +32,11 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoi
     // Algoritmo principal
     do
     {
-        cout << "pointOnHull = " << pointOnHull << endl;
         P.push_back(pointOnHull);                           // P[i] = pointOnHull
         endpoint = Punto<T>(cloud.at(0));
-        for (int j = 1; j < numPoints; ++j)
+        for (int j = 1; j < cloud.size(); ++j)
         {
             Segmento<T> seg(P.at(i), endpoint);
-            cout << "Comparando " << cloud.at(j) << " con " << seg << ": ANS = " << boolalpha << seg.isThisPointAtLeft(cloud.at(j)) << endl;
             if (endpoint == pointOnHull or seg.isThisPointAtLeft(cloud.at(j)))
             {
                 endpoint = cloud.at(j);
@@ -48,31 +44,25 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoi
         }
         ++i;
         pointOnHull = endpoint;
-        cout << " UPDATED pointOnHull = " << pointOnHull << endl;
-    } while (not (endpoint == cloud.at(0)));
+    } while (not (endpoint == P.at(0)));
 
     return Poligono<T>(P.size(), P);
 }
 
+// TODO quickHull
 template<class T>
-Poligono<T> ConvexHull<T>::quickHull(vector<Punto<T>> cloud, const int numPoints)
+Poligono<T> ConvexHull<T>::quickHull(vector<Punto<T>> cloud)
 {
-    for (int i = 0; i < numPoints; i++)
-    {
-        cout << cloud.at(i) << endl;
-    }
-
-    Poligono<T> hull(numPoints, cloud);
-    return hull;
+    return giftWrapping(cloud);
 }
 
 template<class T>
-Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> cloud, const int numPoints)
+Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> cloud)
 {
     Punto<T> leftmost = cloud.at(0);
     int i = 0;
 
-    for (i = 1; i < numPoints; i++)
+    for (i = 1; i < cloud.size(); i++)
     {
         if (cloud.at(i).getX() < leftmost.getX())
         {

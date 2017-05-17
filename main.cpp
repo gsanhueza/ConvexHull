@@ -25,7 +25,6 @@ int main(void) {
     ConvexHull<int> calculator;
 
     // TESTING
-    // FIXME Loop
     cloud[0] = Punto<int>(768, 703);
     cloud[1] = Punto<int>(404, 161);
     cloud[2] = Punto<int>(894, 325);
@@ -41,11 +40,11 @@ int main(void) {
     int qhTime;
 
     stopwatch.start();
-    Poligono<int> gw = calculator.giftWrapping(cloud, numPoints);
+    Poligono<int> gw = calculator.giftWrapping(cloud);
     gwTime = stopwatch.end();
 
     stopwatch.start();
-    Poligono<int> qh = calculator.quickHull(cloud, numPoints);
+    Poligono<int> qh = calculator.quickHull(cloud);
     qhTime = stopwatch.end();
 
     cout << gw << endl;
