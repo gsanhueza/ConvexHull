@@ -41,8 +41,6 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> cloud, const int numPoi
         {
             Segmento<T> seg(P.at(i), endpoint);
             cout << "Comparando " << cloud.at(j) << " con " << seg << ": ANS = " << boolalpha << seg.isThisPointAtLeft(cloud.at(j)) << endl;
-            // Comparando Punto (404, 161) con Segmento (503, 711) --- (768, 703): ANS = true
-            // FIXME Comprobado: isThisPointAtLeft está malo...
             if (endpoint == pointOnHull or seg.isThisPointAtLeft(cloud.at(j)))
             {
                 endpoint = cloud.at(j);
