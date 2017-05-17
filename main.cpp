@@ -47,7 +47,7 @@ int main(void) {
     Poligono<int> qh = calculator.quickHull(cloud);
     qhTime = stopwatch.end();
 
-    cout << gw << endl;
+    cout << gw << endl;                                     // TODO Borrar esto cuando esté listo
 
     // Logging
     Logger logger("ANALISIS");

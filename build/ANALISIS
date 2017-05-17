@@ -1,6 +1,6 @@
 Análisis de resultados para 8 puntos.
 
-Tiempo de ejecución de Gift Wrapping: 64319 nanosegundos.
-Tiempo de ejecución de Quick Hull   : 60830 nanosegundos.
+Tiempo de ejecución de Gift Wrapping: 145627 nanosegundos.
+Tiempo de ejecución de Quick Hull   : 136058 nanosegundos.
 Polígonos iguales, ConvexHull creado correctamente.
 - - - - -

@@ -18,6 +18,7 @@ public:
 
 private:
     Punto<T> leftmostPoint(vector<Punto<T>> cloud);
+    Punto<T> rightmostPoint(vector<Punto<T>> cloud);
 };
 
 template<class T>
@@ -71,6 +72,23 @@ Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> cloud)
     }
 
     return leftmost;
+}
+
+template<class T>
+Punto<T> ConvexHull<T>::rightmostPoint(vector<Punto<T>> cloud)
+{
+    Punto<T> rightmost = cloud.at(0);
+    int i = 0;
+
+    for (i = 1; i < cloud.size(); i++)
+    {
+        if (cloud.at(i).getX() > rightmost.getX())
+        {
+            rightmost = cloud[i];
+        }
+    }
+
+    return rightmost;
 }
 
 #endif // CONVEX_HULL_H
