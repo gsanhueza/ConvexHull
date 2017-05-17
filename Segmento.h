@@ -93,6 +93,14 @@ public:
     */
     bool isThisPointAtBottom(const Punto<T>& p);
 
+    /**
+    * @brief Chequea si el punto pertenece al segmento.
+    *
+    * @param p p_p: Punto a revisar.
+    * @return bool True si pertenece al segmento. False si no.
+    */
+    bool isThisPointOnSeg(const Punto<T>& p);
+
 private:
     Punto<T> m_a;
     Punto<T> m_b;
@@ -192,5 +200,18 @@ bool Segmento<T>::isThisPointAtBottom(const Punto<T>& p)
     // claramente está abajo
     return (expected_y > p.getY());
 }
+
+template<class T>
+bool Segmento<T>::isThisPointOnSeg(const Punto<T>& p)
+{
+    vector<Punto<T>> points;
+    points.push_back(m_a);
+    points.push_back(m_b);
+    points.push_back(p);
+    Poligono<T> tester(3, points);
+
+    return tester.gaussArea() == 0;
+}
+
 
 #endif // SEGMENTO_H

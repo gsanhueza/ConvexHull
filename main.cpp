@@ -21,6 +21,18 @@ int main(void) {
     int numPoints = static_cast<int>(pow(2, 10));
     vector<Punto<int>> cloud = Generator<int>::generateRandomCloud(numPoints);
 
+    // TESTING
+    cloud.clear();
+    cloud.push_back(Punto<int>(100, 100));
+    cloud.push_back(Punto<int>(200, 100));
+    cloud.push_back(Punto<int>(300, 100));
+    cloud.push_back(Punto<int>(100, 200));
+    cloud.push_back(Punto<int>(200, 200));
+    cloud.push_back(Punto<int>(300, 200));
+    cloud.push_back(Punto<int>(100, 300));
+    cloud.push_back(Punto<int>(200, 300));
+    cloud.push_back(Punto<int>(300, 300));
+
     // Creación de convex hulls
     ConvexHull<int> calculator;
 

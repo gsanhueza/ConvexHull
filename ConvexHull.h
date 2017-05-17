@@ -6,7 +6,6 @@
 
 #include "Punto.h"
 #include "Vector.h"
-#include "Segmento.h"
 #include "Poligono.h"
 
 using namespace std;
@@ -22,7 +21,7 @@ private:
     Punto<T> leftmostPoint(vector<Punto<T>> &cloud);
     Punto<T> lowestPoint(vector<Punto<T>> &cloud, int &lowestPos);
     void swapPoints(vector<Punto<T>> &cloud, const int a, const int b);
-    void polarSort(vector<Punto<T>> &cloud, const int targetPos);
+    void polarSort(vector<Punto<T>> &cloud);
     int orientation(Punto<T> p, Punto<T> q, Punto<T> r);
     int distSq(Punto<T> p1, Punto<T> p2);
 };
@@ -39,12 +38,12 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
     // Algoritmo principal
     do
     {
+        cout << "pointOnHull = " << pointOnHull << endl;
         P.push_back(pointOnHull);                           // P[i] = pointOnHull
         endpoint = Punto<T>(cloud.at(0));
         for (int j = 1; j < cloud.size(); ++j)
         {
-            Segmento<T> seg(P.at(i), endpoint);
-            if (endpoint == pointOnHull or seg.isThisPointAtLeft(cloud.at(j)))
+            if (endpoint == pointOnHull or orientation(P.at(i), cloud.at(j), endpoint) == 1)
             {
                 endpoint = cloud.at(j);
             }
@@ -66,7 +65,7 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 
     swapPoints(cloud, 0, lowestPos);
     Punto<T> p0(cloud.at(0));
-    polarSort(cloud, 1);
+    polarSort(cloud);
 
     int M = 1;
 
@@ -111,6 +110,13 @@ Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> &cloud)
         {
             leftmost = cloud[i];
         }
+        else if (cloud.at(i).getX() == leftmost.getX())
+        {
+            if (cloud.at(i).getY() < leftmost.getY())
+            {
+                leftmost = cloud[i];
+            }
+        }
     }
 
     return leftmost;
@@ -151,7 +157,7 @@ void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int a, const int 
 }
 
 template<class T>
-void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, const int targetPos)
+void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud)
 {
     sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
         Punto<T> p0(cloud.at(0));
@@ -167,7 +173,7 @@ template<class T>
 int ConvexHull<T>::orientation(Punto<T> p, Punto<T> q, Punto<T> r)
 {
     int val = (q.getY() - p.getY()) * (r.getX() - q.getX()) -
-                (q.getX() - p.getX()) * (r.getY() - q.getY());
+              (q.getX() - p.getX()) * (r.getY() - q.getY());
 
     if (val == 0) return 0;                                 // Colineal
     return (val > 0) ? 1 : 2;                               // CW o CCW
@@ -176,8 +182,8 @@ int ConvexHull<T>::orientation(Punto<T> p, Punto<T> q, Punto<T> r)
 template<class T>
 int ConvexHull<T>::distSq(Punto<T> p1, Punto<T> p2)
 {
-    return (p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) +
-    (p1.getY() - p2.getY()) * (p1.getY() - p2.getY());
+    return  (p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) +
+            (p1.getY() - p2.getY()) * (p1.getY() - p2.getY());
 }
 
 
