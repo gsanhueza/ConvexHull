@@ -12,15 +12,15 @@ template <class T>
 */
 class Segmento
 {
+    template<class U>
     /**
     * @brief Imprime información de este Segmento.
     *
     * @param U p_U: Tipo del Segmento.
     * @param out p_out: Stream de salida.
-    * @param v p_v: Segmento a imprimir.
+    * @param s p_s: Segmento a imprimir.
     * @return std::ostream& Stream de salida.
     */
-    template<class U>
     friend ostream& operator<<(ostream &out, const Segmento<U> &s);
 
 public:
@@ -93,6 +93,14 @@ public:
     */
     bool isThisPointAtBottom(const Punto<T>& p);
 
+    /**
+    * @brief Chequea si el punto pertenece al segmento.
+    *
+    * @param p p_p: Punto a revisar.
+    * @return bool True si pertenece al segmento. False si no.
+    */
+    bool isThisPointOnSeg(const Punto<T>& p);
+
 private:
     Punto<T> m_a;
     Punto<T> m_b;
@@ -106,7 +114,7 @@ Segmento<T>::Segmento(Punto<T> x, Punto<T> y) : m_a(x), m_b(y)
 }
 
 template<class T>
-Segmento<T>::Segmento(const Segmento<T>& other) : m_a(other.m_a), m_b(other.m_b)
+Segmento<T>::Segmento(const Segmento<T>& other) : m_a(other.m_a), m_b(other.m_b), length(other.length)
 {
 }
 
@@ -120,6 +128,7 @@ Segmento<T> & Segmento<T>::operator=(const Segmento<T>& s)
 {
     m_a = s.m_a;
     m_b = s.m_b;
+    length = s.m_length;
     return *this;
 }
 
@@ -139,33 +148,25 @@ ostream& operator<<(ostream &out, const Segmento<U> &s)
 template<class T>
 bool Segmento<T>::isThisPointAtLeft(const Punto<T>& p)
 {
-    if (abs(m_a.getX() - m_b.getX()) < 0.001)               // epsilon magic
-        return p.getX() < m_b.getX();
+    vector<Punto<T>> points;
+    points.push_back(m_a);
+    points.push_back(m_b);
+    points.push_back(p);
+    Poligono<T> tester(3, points);
 
-    // Usando ecuación de la recta
-    double m = 1.0 * (m_b.getY() - m_a.getY()) / (m_b.getX() - m_a.getX());
-    double b = m_b.getY() - (m * m_b.getX());
-    double expected_y = m * p.getX() + b;
-
-    // Si el punto P está arriba de lo esperado para el mismo X
-    // y la pendiente es positiva, está a la izquierda
-    return ((m > 0 ? 1 : -1) * expected_y < p.getY());
+    return tester.isCCW();
 }
 
 template<class T>
 bool Segmento<T>::isThisPointAtRight(const Punto<T>& p)
 {
-    if (abs(m_a.getX() - m_b.getX()) < 0.001)               // epsilon magic
-        return p.getX() > m_b.getX();
+    vector<Punto<T>> points;
+    points.push_back(m_a);
+    points.push_back(m_b);
+    points.push_back(p);
+    Poligono<T> tester(3, points);
 
-    // Usando ecuación de la recta
-    double m = 1.0 * (m_b.getY() - m_a.getY()) / (m_b.getX() - m_a.getX());
-    double b = m_b.getY() - (m * m_b.getX());
-    double expected_y = m * p.getX() + b;
-
-    // Si el punto P está debajo de lo esperado para el mismo X
-    // y la pendiente es positiva, está a la derecha
-    return ((m > 0 ? 1 : -1) * expected_y > p.getY());
+    return not tester.isCCW() and tester.area() > 0;
 }
 
 template<class T>
@@ -199,5 +200,18 @@ bool Segmento<T>::isThisPointAtBottom(const Punto<T>& p)
     // claramente está abajo
     return (expected_y > p.getY());
 }
+
+template<class T>
+bool Segmento<T>::isThisPointOnSeg(const Punto<T>& p)
+{
+    vector<Punto<T>> points;
+    points.push_back(m_a);
+    points.push_back(m_b);
+    points.push_back(p);
+    Poligono<T> tester(3, points);
+
+    return tester.gaussArea() == 0;
+}
+
 
 #endif // SEGMENTO_H

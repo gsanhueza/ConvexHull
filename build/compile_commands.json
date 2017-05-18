@@ -1,6 +1,11 @@
 [
 {
   "directory": "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/build",
+  "command": "/usr/bin/c++    -g   -o CMakeFiles/tarea_2.dir/Stopwatch.cpp.o -c \"/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.cpp\"",
+  "file": "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.cpp"
+},
+{
+  "directory": "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/build",
   "command": "/usr/bin/c++    -g   -o CMakeFiles/tarea_2.dir/main.cpp.o -c \"/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/main.cpp\"",
   "file": "/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/main.cpp"
 }

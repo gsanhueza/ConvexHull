@@ -11,7 +11,15 @@ Build Type=Debug
 CMake Binary=/usr/bin/cmake
 Environment Profile=
 Extra Arguments=
-Install Directory=
+Install Directory=/usr/local
+
+[Cppcheck]
+checkMissingInclude=true
+checkPerformance=true
+checkPortability=true
+checkStyle=true
+checkUnusedFunction=true
+forceCheck=true
 
 [Launch]
 Launch Configurations=Launch Configuration 0
@@ -19,7 +27,7 @@ Launch Configurations=Launch Configuration 0
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
 Configured Launchers=nativeAppLauncher
-Name=tarea_2
+Name=tarea2
 Type=Native Application
 
 [Launch][Launch Configuration 0][Data]
@@ -33,3 +41,6 @@ Project Target=Tarea_2,tarea_2
 Use External Terminal=false
 Working Directory=
 isExecutable=false
+
+[Project]
+VersionControlSupport=kdevgit

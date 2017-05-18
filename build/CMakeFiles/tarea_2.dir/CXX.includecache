@@ -6,6 +6,32 @@
 
 #IncludeRegexTransform: 
 
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/ConvexHull.h
+vector
+-
+algorithm
+-
+Punto.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
+Vector.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Vector.h
+Poligono.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Poligono.h
+
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Generator.h
+ctime
+-
+vector
+-
+Punto.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
+
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Logger.h
+iostream
+-
+fstream
+-
+
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Poligono.h
 cstdarg
 -
@@ -18,27 +44,37 @@ Punto.h
 iostream
 -
 
-/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Segmento.h
-Punto.h
-/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
-math.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.cpp
+Stopwatch.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.h
+iostream
+-
+
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.h
+chrono
 -
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Vector.h
+ostream
+-
 math.h
 -
 
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/main.cpp
-iostream
+cmath
 -
-assert.h
+vector
 -
 Punto.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Punto.h
-Vector.h
-/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Vector.h
-Segmento.h
-/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Segmento.h
 Poligono.h
 /home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Poligono.h
+ConvexHull.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/ConvexHull.h
+Generator.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Generator.h
+Stopwatch.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Stopwatch.h
+Logger.h
+/home/gabriel/Documentos/TODO EL MATERIAL DE U-CURSOS/9no Semestre/CC5502-1 Geometría Computacional/Tarea_2/Logger.h
 

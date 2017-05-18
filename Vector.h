@@ -1,5 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+#include <ostream>
 #include <math.h>
 
 using namespace std;
@@ -11,15 +12,15 @@ template<class T>
 */
 class Vector
 {
-    /**
-     * @brief Imprime información de este Vector.
-     *
-     * @param U p_U: Tipo del Vector.
-     * @param out p_out: Stream de salida.
-     * @param v p_v: Vector a imprimir.
-     * @return std::ostream& Stream de salida.
-     */
     template<class U>
+    /**
+    * @brief Imprime información de este Vector.
+    *
+    * @param U p_U: Tipo del Vector.
+    * @param out p_out: Stream de salida.
+    * @param v p_v: Vector a imprimir.
+    * @return std::ostream& Stream de salida.
+    */
     friend ostream& operator<<(ostream &out, const Vector<U> &v);
 
 public:

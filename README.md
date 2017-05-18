@@ -4,4 +4,4 @@
 * Ir a carpeta `build` (crearla si no existe)
 * Ejecutar `cmake ..`
 * Ejecutar `make`
-* Ejecutar `./tarea_1`
+* Ejecutar `./tarea_2`

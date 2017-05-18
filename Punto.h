@@ -11,6 +11,7 @@ template<class T>
 */
 class Punto
 {
+    template<class U>
     /**
     * @brief Imprime información de este Punto.
     *
@@ -19,7 +20,6 @@ class Punto
     * @param p p_p: Puntoa imprimir.
     * @return std::ostream& Stream de salida.
     */
-    template<class U>
     friend ostream& operator<<(ostream &out, const Punto<U> &p);
 
 public:
@@ -82,6 +82,7 @@ public:
     */
     Punto<T> operator- (const Punto<T>& p) const;
 
+    template<typename U>
     /**
     * @brief Overload del operador de multiplicación. Escala este punto.
     *
@@ -90,7 +91,6 @@ public:
     * @param scale p_scale: Escala.
     * @return Punto< T > Nuevo punto escalado.
     */
-    template<typename U>
     Punto<T> operator* (const U scale) const;
 
     /**

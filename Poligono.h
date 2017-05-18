@@ -14,24 +14,32 @@ template <class T>
 */
 class Poligono
 {
+    template<class U>
     /**
     * @brief Imprime información de este Poligono.
     *
     * @param U p_U: Tipo del Poligono.
     * @param out p_out: Stream de salida.
-    * @param v p_v: Poligono a imprimir.
+    * @param p p_p: Poligono a imprimir.
     * @return std::ostream& Stream de salida.
     */
-    template<class U>
     friend ostream& operator<<(ostream &out, const Poligono<U> &p);
 
 public:
     /**
     * @brief Constructor del polígono. Puede recibir una cantidad indeterminada de puntos.
     *
-    * @param n p_n: Numero de puntos que tendrá el polígono.
+    * @param n p_n: Número de puntos que tendrá el polígono.
     */
     Poligono(int n, ...);
+
+    /**
+    * @brief Constructor del polígono. Recibe un arreglo (punteros) de Puntos.
+    *
+    * @param n p_n: Número de puntos que tendrá el polígono.
+    * @param array p_array: Arreglo de Puntos (puntero).
+    */
+    Poligono(int n, vector<Punto<T>> array);
 
     /**
     * @brief Destructor del polígono.
@@ -61,6 +69,22 @@ public:
     */
     bool isInside(Punto<T> p) const;
 
+    /**
+    * @brief Overload del operador de igualdad.
+    *
+    * @param p p_p: Polígono a comparar.
+    * @return bool True si son iguales.
+    */
+    bool operator==(Poligono &p);
+
+    /**
+    * @brief Overload del operador de desigualdad.
+    *
+    * @param p p_p: Polígono a comparar.
+    * @return bool True si son distintos.
+    */
+    bool operator!=(Poligono &p);
+
 private:
     int numLados;
     vector<Punto<T>> listPuntos;
@@ -84,6 +108,12 @@ Poligono<T>::Poligono(int n, ...) : numLados(n)
         listPuntos.push_back(va_arg(ap, Punto<T>));
     }
     va_end(ap);
+}
+
+template<class T>
+Poligono<T>::Poligono(int n, vector<Punto<T>> array) : numLados(n)
+{
+    listPuntos = array;
 }
 
 template<class T>
@@ -165,6 +195,42 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
         cout << " (" << P.getX() << ", " << P.getY() << ")" << endl;
     }
     return out;
+}
+
+template<class T>
+bool Poligono<T>::operator==(Poligono<T>& p)
+{
+    // Caso trivial, tamaños iguales o distintos
+    if (listPuntos.size() != p.listPuntos.size())
+    {
+        return false;
+    }
+    // Detección de offset
+    int offset = 0;
+    for (int i = 0; i < listPuntos.size(); i++)
+    {
+        if (listPuntos.at(0) == p.listPuntos.at(i))
+        {
+            offset = i;
+            break;
+        }
+    }
+
+    // Comparación real
+    for (int i = 0; i < listPuntos.size(); i++)
+    {
+        if (not (listPuntos.at(i) == p.listPuntos.at((i + offset) % listPuntos.size())))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+template<class T>
+bool Poligono<T>::operator!=(Poligono<T>& p)
+{
+    return not (*this == p);
 }
 
 #endif // POLIGONO_H
