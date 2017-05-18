@@ -18,20 +18,16 @@ using namespace std;
 */
 int main(void) {
     // Creación de nube de puntos
-    int numPoints = static_cast<int>(pow(2, 10));
-    vector<Punto<int>> cloud = Generator<int>::generateRandomCloud(numPoints);
+    int numPoints = static_cast<int>(pow(2, 11));
+    vector<Punto<int>> cloud = Generator<int>::generateRandomCloud(numPoints, 1, 10000);
 
-    // TESTING
-    cloud.clear();
-    cloud.push_back(Punto<int>(100, 100));
-    cloud.push_back(Punto<int>(200, 100));
-    cloud.push_back(Punto<int>(300, 100));
-    cloud.push_back(Punto<int>(100, 200));
-    cloud.push_back(Punto<int>(200, 200));
-    cloud.push_back(Punto<int>(300, 200));
-    cloud.push_back(Punto<int>(100, 300));
-    cloud.push_back(Punto<int>(200, 300));
-    cloud.push_back(Punto<int>(300, 300));
+//     TESTING
+//     cloud.clear();
+//     cloud.push_back(Punto<int>(200, 100));
+//     cloud.push_back(Punto<int>(100, 200));
+//     cloud.push_back(Punto<int>(200, 200));
+//     cloud.push_back(Punto<int>(300, 200));
+//     cloud.push_back(Punto<int>(200, 300));
 
     // Creación de convex hulls
     ConvexHull<int> calculator;
@@ -63,7 +59,10 @@ int main(void) {
     // Chequeo de igualdad
     if (gw != qh)
     {
-        logger << "Polígonos no son iguales." << endl;
+        logger << "Polígonos no son iguales. " << endl;
+        cout << endl;
+        logger << "Motivo probable: Colinealidad." << endl;
+        cout << endl;
         cout << gw << endl;
         cout << " v/s " << endl;
         cout << qh << endl;
