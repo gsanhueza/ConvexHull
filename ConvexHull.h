@@ -18,8 +18,8 @@ public:
     Poligono<T> grahamScan(vector<Punto<T>> &cloud);
 
 private:
-    Punto<T> leftmostPoint(vector<Punto<T>> &cloud);
-    Punto<T> lowestPoint(vector<Punto<T>> &cloud, int &lowestPos);
+    void leftmostPoint(vector<Punto<T>> &cloud, int &leftmostPos);
+    void lowestPoint(vector<Punto<T>> &cloud, int &lowestPos);
     void swapPoints(vector<Punto<T>> &cloud, const int a, const int b);
     void polarSort(vector<Punto<T>> &cloud);
     int orientation(Punto<T> p, Punto<T> q, Punto<T> r);
@@ -29,32 +29,27 @@ private:
 template<class T>
 Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
 {
-    Punto<T> pointOnHull = leftmostPoint(cloud);
-    Punto<T> endpoint;
-    vector<Punto<T>> P;
-
-    int i = 0;
+    vector<Punto<T>> hull;
+    int l = 0;
+    leftmostPoint(cloud, l);
+    int p = l;
 
     // Algoritmo principal
     do
     {
-        cout << "pointOnHull = " << pointOnHull << endl;
-        P.push_back(pointOnHull);                           // P[i] = pointOnHull
-        endpoint = Punto<T>(cloud.at(0));
-        for (int j = 1; j < cloud.size(); ++j)
+        hull.push_back(cloud.at(p));
+        int q = (p + 1) % cloud.size();
+        for (int i = 0; i < cloud.size(); i++)
         {
-            if (endpoint == pointOnHull or orientation(P.at(i), cloud.at(j), endpoint) == 1)
+            if (orientation(cloud.at(p), cloud.at(i), cloud.at(q)) == 2)
             {
-                endpoint = cloud.at(j);
+                q = i;
             }
         }
-        ++i;
-        pointOnHull = endpoint;
-    } while (not (endpoint == P.at(0)));
+        p = q;
+    } while (p != l);
 
-    reverse(P.begin(), P.end());                            // Convertir a CCW
-
-    return Poligono<T>(P.size(), P);
+    return Poligono<T>(hull.size(), hull);
 }
 
 template<class T>
@@ -99,7 +94,7 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 }
 
 template<class T>
-Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> &cloud)
+void ConvexHull<T>::leftmostPoint(vector<Punto<T>> &cloud, int &lowestPos)
 {
     Punto<T> leftmost = cloud.at(0);
     int i = 0;
@@ -109,21 +104,21 @@ Punto<T> ConvexHull<T>::leftmostPoint(vector<Punto<T>> &cloud)
         if (cloud.at(i).getX() < leftmost.getX())
         {
             leftmost = cloud[i];
+            lowestPos = i;
         }
         else if (cloud.at(i).getX() == leftmost.getX())
         {
             if (cloud.at(i).getY() < leftmost.getY())
             {
                 leftmost = cloud[i];
+                lowestPos = i;
             }
         }
     }
-
-    return leftmost;
 }
 
 template<class T>
-Punto<T> ConvexHull<T>::lowestPoint(vector<Punto<T> >& cloud, int &lowestPos)
+void ConvexHull<T>::lowestPoint(vector<Punto<T> >& cloud, int &lowestPos)
 {
     Punto<T> lowest = cloud.at(0);
     int i = 0;
@@ -144,8 +139,6 @@ Punto<T> ConvexHull<T>::lowestPoint(vector<Punto<T> >& cloud, int &lowestPos)
             }
         }
     }
-
-    return lowest;
 }
 
 template<class T>
@@ -163,7 +156,7 @@ void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud)
         Punto<T> p0(cloud.at(0));
         int o = orientation(p0, p1, p2);
         if (o == 0)
-            return (distSq(p0, p2) < distSq(p0, p1));
+            return (distSq(p0, p2) >= distSq(p0, p1));
 
         return (o == 2);
     });
