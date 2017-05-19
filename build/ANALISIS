@@ -1,6 +1,36 @@
-Análisis de resultados para 2048 puntos.
+Supuestos:
+* Se ocuparon 2^10 puntos aleatorios de tipo int, con valores de coordenadas entre 1 y 10000.
+* Existe la posibilidad de que las cerraduras sean casi-iguales en vez de iguales, por problemas de colinealidad.
+  * Si eso pasa, se muestran las coordenadas de *ambos* polígonos creados para su comparación manual.
 
-Tiempo de ejecución de Gift Wrapping: 4371141 nanosegundos.
-Tiempo de ejecución de Graham Scan  : 325695493 nanosegundos.
+Análisis de resultados para 1024 puntos.
+
+Tiempo de ejecución de Gift Wrapping: 3058 microsegundos.
+Tiempo de ejecución de Graham Scan  : 1834 microsegundos.
 Polígonos iguales, ConvexHull creado correctamente.
+Polígono de 22 lados.
+Coordenadas: 
+ (5, 6531)
+ (23, 2752)
+ (42, 1542)
+ (276, 126)
+ (321, 24)
+ (1050, 18)
+ (9333, 3)
+ (9692, 47)
+ (9945, 252)
+ (9982, 1447)
+ (9993, 5119)
+ (9994, 6561)
+ (9981, 9532)
+ (9944, 9741)
+ (9893, 9883)
+ (8525, 9939)
+ (7035, 9968)
+ (5685, 9994)
+ (1785, 9998)
+ (522, 9914)
+ (237, 9715)
+ (112, 8369)
+
 - - - - -

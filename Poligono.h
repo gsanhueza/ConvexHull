@@ -157,7 +157,7 @@ T Poligono<T>::gaussArea() const
     Punto<T> first_p = listPuntos.front();
     sum += ((first_p.getX() - last_p.getX()) * (first_p.getY() + last_p.getY()));
 
-    return sum / 2;
+    return sum >> 1;
 }
 
 template<class T>
@@ -192,7 +192,7 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
     out << "Coordenadas: " << endl;
     for (Punto<U> P : p.listPuntos)
     {
-        cout << " (" << P.getX() << ", " << P.getY() << ")" << endl;
+        out << " (" << P.getX() << ", " << P.getY() << ")" << endl;
     }
     return out;
 }

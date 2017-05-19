@@ -19,7 +19,7 @@ private:
 template<class T>
 vector<Punto<T>> Generator<T>::generateRandomCloud(const int numPoints, const int &lower, const int &upper)
 {
-    srand(time(0));
+    srand(time(nullptr));
     vector<Punto<T>> cloud;
 
     for (int i = 0; i < numPoints; i++)
