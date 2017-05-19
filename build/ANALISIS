@@ -5,32 +5,30 @@ Supuestos:
 
 Análisis de resultados para 1024 puntos.
 
-Tiempo de ejecución de Gift Wrapping: 3058 microsegundos.
-Tiempo de ejecución de Graham Scan  : 1834 microsegundos.
+Tiempo de ejecución de Gift Wrapping: 2067 microsegundos.
+Tiempo de ejecución de Graham Scan  : 1611 microsegundos.
 Polígonos iguales, ConvexHull creado correctamente.
-Polígono de 22 lados.
+Polígono de 20 lados.
 Coordenadas: 
- (5, 6531)
- (23, 2752)
- (42, 1542)
- (276, 126)
- (321, 24)
- (1050, 18)
- (9333, 3)
- (9692, 47)
- (9945, 252)
- (9982, 1447)
- (9993, 5119)
- (9994, 6561)
- (9981, 9532)
- (9944, 9741)
- (9893, 9883)
- (8525, 9939)
- (7035, 9968)
- (5685, 9994)
- (1785, 9998)
- (522, 9914)
- (237, 9715)
- (112, 8369)
+ (7, 1815)
+ (93, 284)
+ (257, 133)
+ (2122, 15)
+ (5706, 12)
+ (7912, 82)
+ (9566, 135)
+ (9813, 182)
+ (9915, 207)
+ (9997, 3455)
+ (9977, 7498)
+ (9972, 8324)
+ (9918, 9124)
+ (9793, 9906)
+ (9291, 9952)
+ (7384, 9970)
+ (560, 9998)
+ (164, 9491)
+ (104, 9374)
+ (59, 8941)
 
 - - - - -
