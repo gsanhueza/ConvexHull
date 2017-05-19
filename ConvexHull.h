@@ -22,7 +22,7 @@ private:
     void leftmostPoint(vector<Punto<T>> &cloud, int &leftmostPos);
     void lowestPoint(vector<Punto<T>> &cloud, int &lowestPos);
     void swapPoints(vector<Punto<T>> &cloud, const int a, const int b);
-    void polarSort(vector<Punto<T>> &cloud);
+    void polarSort(vector<Punto<T>> &cloud, Punto<T> &p0);
 };
 
 template<class T>
@@ -56,16 +56,14 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 {
     int lowestPos = 0;
     lowestPoint(cloud, lowestPos);
-
     swapPoints(cloud, 0, lowestPos);
-    Punto<T> p0(cloud.at(0));
-    polarSort(cloud);                                       // FIXME Esta wea se demora más que la conchetumare xddxdxd
+    polarSort(cloud, cloud.at(0));
 
     int M = 1;
 
     for (int i = 1; i < cloud.size(); i++)
     {
-        while (i < cloud.size() - 1 and Poligono<T>(3, p0, cloud.at(i), cloud.at(i + 1)).area() == 0)
+        while (i < cloud.size() - 1 and Poligono<T>(3, cloud.at(0), cloud.at(i), cloud.at(i + 1)).area() == 0)
         {
             i++;
         }
@@ -149,13 +147,12 @@ void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int a, const int 
 }
 
 template<class T>
-void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud)
+void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, Punto<T> &p0)
 {
     sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
-        Punto<T> p0(cloud.at(0));
         Poligono<T> tester(3, p0, p1, p2);
         if (tester.area() == 0)
-            return (Segmento<T>(p0, p2).getLength() >= Segmento<T>(p0, p1).getLength());
+        return (Segmento<T>(p0, p2).getLength() >= Segmento<T>(p0, p1).getLength());
 
         return (tester.isCCW());
     });

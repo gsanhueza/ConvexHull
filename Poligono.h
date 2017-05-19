@@ -157,7 +157,7 @@ T Poligono<T>::gaussArea() const
     Punto<T> first_p = listPuntos.front();
     sum += ((first_p.getX() - last_p.getX()) * (first_p.getY() + last_p.getY()));
 
-    return sum / 2;
+    return sum >> 1;
 }
 
 template<class T>
