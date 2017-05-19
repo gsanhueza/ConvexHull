@@ -40,7 +40,10 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
         int q = (p + 1) % cloud.size();
         for (int i = 0; i < cloud.size(); i++)
         {
-            if (Poligono<T>(3, cloud.at(p), cloud.at(i), cloud.at(q)).isCCW())
+            int val = (cloud.at(p).getY() - cloud.at(i).getY()) * (cloud.at(q).getX() - cloud.at(p).getX()) -
+                      (cloud.at(p).getX() - cloud.at(i).getX()) * (cloud.at(q).getY() - cloud.at(p).getY());
+
+            if (val > 0)                                    // CCW
             {
                 q = i;
             }
@@ -151,7 +154,7 @@ void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, Punto<T> &p0)
 {
     sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
         int val = (p0.getY() - p1.getY()) * (p2.getX() - p0.getX()) -
-        (p0.getX() - p1.getX()) * (p2.getY() - p0.getY());
+                  (p0.getX() - p1.getX()) * (p2.getY() - p0.getY());
 
         return val > 0;
     });

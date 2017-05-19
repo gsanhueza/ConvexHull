@@ -1,6 +1,3 @@
 Análisis de resultados para 1024 puntos.
 
-Tiempo de ejecución de Gift Wrapping: 17251 microsegundos.
-Tiempo de ejecución de Graham Scan  : 3323 microsegundos.
-Polígonos iguales, ConvexHull creado correctamente.
-- - - - -
+Tiempo de ejecución de Gift Wrapping: 3107 microsegundos.
