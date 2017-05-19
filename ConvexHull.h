@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "Punto.h"
+#include "Segmento.h"
 #include "Vector.h"
 #include "Poligono.h"
 
@@ -41,7 +42,7 @@ Poligono<T> ConvexHull<T>::giftWrapping(vector<Punto<T>> &cloud)
         int q = (p + 1) % cloud.size();
         for (int i = 0; i < cloud.size(); i++)
         {
-            if (orientation(cloud.at(p), cloud.at(i), cloud.at(q)) == 2)
+            if (Poligono<T>(3, cloud.at(p), cloud.at(i), cloud.at(q)).isCCW())
             {
                 q = i;
             }
@@ -66,7 +67,7 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 
     for (int i = 1; i < cloud.size(); i++)
     {
-        while (i < cloud.size() - 1 and orientation(p0, cloud.at(i), cloud.at(i + 1)) == 0)
+        while (i < cloud.size() - 1 and Poligono<T>(3, p0, cloud.at(i), cloud.at(i + 1)).area() == 0)
         {
             i++;
         }
@@ -82,7 +83,7 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 
     for (int i = 3; i < M; i++)
     {
-        while (orientation(hull.at(hull.size() - 2), hull.back(), cloud.at(i)) != 2)
+        while (not Poligono<T>(3, hull.at(hull.size() - 2), hull.back(), cloud.at(i)).isCCW())
         {
             hull.pop_back();
         }
@@ -154,11 +155,11 @@ void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud)
 {
     sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
         Punto<T> p0(cloud.at(0));
-        int o = orientation(p0, p1, p2);
-        if (o == 0)
+        Poligono<T> tester(3, p0, p1, p2);
+        if (tester.area() == 0)
             return (distSq(p0, p2) >= distSq(p0, p1));
 
-        return (o == 2);
+        return (tester.isCCW());
     });
 }
 
