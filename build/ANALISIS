@@ -1,3 +1,4 @@
+- - - - -
 Supuestos:
 * Se ocuparon 2^10 puntos aleatorios de tipo int, con valores de coordenadas entre 1 y 10000.
 * Existe la posibilidad de que las cerraduras sean casi-iguales en vez de iguales, por problemas de colinealidad.
@@ -5,30 +6,36 @@ Supuestos:
 
 Análisis de resultados para 1024 puntos.
 
-Tiempo de ejecución de Gift Wrapping: 2067 microsegundos.
-Tiempo de ejecución de Graham Scan  : 1611 microsegundos.
+Tiempo de ejecución de Gift Wrapping: 1332 microsegundos.
+Tiempo de ejecución de Graham Scan  : 904 microsegundos.
 Polígonos iguales, ConvexHull creado correctamente.
-Polígono de 20 lados.
+Polígono de 23 lados.
 Coordenadas: 
- (7, 1815)
- (93, 284)
- (257, 133)
- (2122, 15)
- (5706, 12)
- (7912, 82)
- (9566, 135)
- (9813, 182)
- (9915, 207)
- (9997, 3455)
- (9977, 7498)
- (9972, 8324)
- (9918, 9124)
- (9793, 9906)
- (9291, 9952)
- (7384, 9970)
- (560, 9998)
- (164, 9491)
- (104, 9374)
- (59, 8941)
+ (2, 3053)
+ (23, 502)
+ (40, 227)
+ (78, 168)
+ (329, 60)
+ (1394, 3)
+ (7714, 26)
+ (8560, 85)
+ (9959, 309)
+ (9987, 987)
+ (9989, 3784)
+ (9966, 7109)
+ (9863, 8708)
+ (9717, 9647)
+ (9282, 9945)
+ (7168, 9994)
+ (2281, 9981)
+ (606, 9931)
+ (470, 9887)
+ (282, 9258)
+ (69, 7017)
+ (63, 6880)
+ (32, 5489)
 
+- - - - -
+Resultados en porcentaje:
+Caso normal de Graham Scan un 32.1321% más rápido que Gift Wrapping.
 - - - - -
