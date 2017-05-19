@@ -150,11 +150,10 @@ template<class T>
 void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, Punto<T> &p0)
 {
     sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
-        Poligono<T> tester(3, p0, p1, p2);
-        if (tester.area() == 0)
-        return (Segmento<T>(p0, p2).getLength() >= Segmento<T>(p0, p1).getLength());
+        int val = (p0.getY() - p1.getY()) * (p2.getX() - p0.getX()) -
+        (p0.getX() - p1.getX()) * (p2.getY() - p0.getY());
 
-        return (tester.isCCW());
+        return val > 0;
     });
 }
 
