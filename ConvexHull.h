@@ -23,8 +23,6 @@ private:
     void lowestPoint(vector<Punto<T>> &cloud, int &lowestPos);
     void swapPoints(vector<Punto<T>> &cloud, const int a, const int b);
     void polarSort(vector<Punto<T>> &cloud);
-    int orientation(Punto<T> p, Punto<T> q, Punto<T> r);
-    int distSq(Punto<T> p1, Punto<T> p2);
 };
 
 template<class T>
@@ -157,28 +155,10 @@ void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud)
         Punto<T> p0(cloud.at(0));
         Poligono<T> tester(3, p0, p1, p2);
         if (tester.area() == 0)
-            return (distSq(p0, p2) >= distSq(p0, p1));
+            return (Segmento<T>(p0, p2).getLength() >= Segmento<T>(p0, p1).getLength());
 
         return (tester.isCCW());
     });
 }
-
-template<class T>
-int ConvexHull<T>::orientation(Punto<T> p, Punto<T> q, Punto<T> r)
-{
-    int val = (q.getY() - p.getY()) * (r.getX() - q.getX()) -
-              (q.getX() - p.getX()) * (r.getY() - q.getY());
-
-    if (val == 0) return 0;                                 // Colineal
-    return (val > 0) ? 1 : 2;                               // CW o CCW
-}
-
-template<class T>
-int ConvexHull<T>::distSq(Punto<T> p1, Punto<T> p2)
-{
-    return  (p1.getX() - p2.getX()) * (p1.getX() - p2.getX()) +
-            (p1.getY() - p2.getY()) * (p1.getY() - p2.getY());
-}
-
 
 #endif // CONVEX_HULL_H

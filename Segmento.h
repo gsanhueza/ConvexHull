@@ -46,6 +46,13 @@ public:
     ~Segmento();
 
     /**
+    * @brief Retorna el largo del segmento.
+    *
+    * @return double Largo.
+    */
+    double getLength(void);
+
+    /**
     * @brief Overload del operador de asignación.
     *
     * @param s p_s: Segmento recibido.
@@ -121,6 +128,12 @@ Segmento<T>::Segmento(const Segmento<T>& other) : m_a(other.m_a), m_b(other.m_b)
 template<class T>
 Segmento<T>::~Segmento()
 {
+}
+
+template<class T>
+double Segmento<T>::getLength()
+{
+    return length;
 }
 
 template<class T>
