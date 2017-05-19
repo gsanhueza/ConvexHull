@@ -21,7 +21,7 @@ public:
 private:
     void leftmostPoint(vector<Punto<T>> &cloud, int &leftmostPos);
     void lowestPoint(vector<Punto<T>> &cloud, int &lowestPos);
-    void swapPoints(vector<Punto<T>> &cloud, const int a, const int b);
+    void swapPoints(vector<Punto<T>> &cloud, const int &a, const int &b);
     void polarSort(vector<Punto<T>> &cloud, Punto<T> &p0);
     inline int orient(Punto<T> &p0, Punto<T> &p1, Punto<T> &p2);
 };
@@ -142,7 +142,7 @@ void ConvexHull<T>::lowestPoint(vector<Punto<T> >& cloud, int &lowestPos)
 }
 
 template<class T>
-void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int a, const int b)
+void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int &a, const int &b)
 {
     Punto<T> temp = cloud.at(a);
     cloud.at(a) = cloud.at(b);
@@ -152,11 +152,9 @@ void ConvexHull<T>::swapPoints(vector<Punto<T> >& cloud, const int a, const int 
 template<class T>
 void ConvexHull<T>::polarSort(vector<Punto<T> >& cloud, Punto<T> &p0)
 {
-    sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> p1, Punto<T> p2) {
-        int val = (p0.getY() - p1.getY()) * (p2.getX() - p0.getX()) -
-                  (p0.getX() - p1.getX()) * (p2.getY() - p0.getY());
-
-        return val > 0;
+    sort(cloud.begin() + 1, cloud.end(), [=](Punto<T> &p1, Punto<T> &p2) {
+        return  (p0.getY() - p1.getY()) * (p2.getX() - p0.getX()) -
+                (p0.getX() - p1.getX()) * (p2.getY() - p0.getY()) > 0;
     });
 }
 
@@ -166,6 +164,5 @@ inline int ConvexHull<T>::orient(Punto<T>& p0, Punto<T>& p1, Punto<T>& p2)
     return  (p2.getY() - p0.getY()) * (p1.getX() - p2.getX()) -
             (p2.getX() - p0.getX()) * (p1.getY() - p2.getY());
 }
-
 
 #endif // CONVEX_HULL_H

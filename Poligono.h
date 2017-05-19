@@ -192,7 +192,7 @@ ostream& operator<<(ostream &out, const Poligono<U> &p)
     out << "Coordenadas: " << endl;
     for (Punto<U> P : p.listPuntos)
     {
-        cout << " (" << P.getX() << ", " << P.getY() << ")" << endl;
+        out << " (" << P.getX() << ", " << P.getY() << ")" << endl;
     }
     return out;
 }

@@ -38,10 +38,19 @@ int main(void) {
     // Tiempo transcurrido
     Stopwatch stopwatch;
     int gwTime;
-    int qhTime;
+    int gsTime;
 
     // Logging
     Logger logger("ANALISIS");
+
+    logger << "Supuestos:" << endl;
+    cout << endl;
+    logger << "* Se ocuparon 2^10 puntos aleatorios de tipo int, con valores de coordenadas entre 1 y 10000." << endl;
+    cout << endl;
+    logger << "* Existe la posibilidad de que las cerraduras sean casi-iguales en vez de iguales, por problemas de colinealidad." << endl;
+    cout << endl;
+    logger << "  * Si eso pasa, se muestran las coordenadas de *ambos* polígonos creados para su comparación manual." << endl << endl;
+    cout << endl << endl;
 
     logger << "Análisis de resultados para " << numPoints << " puntos." << endl << endl;
     cout << endl << endl;
@@ -56,14 +65,14 @@ int main(void) {
 
     // Graham Scan
     stopwatch.start();
-    Poligono<pointType> qh = calculator.grahamScan(cloud);
-    qhTime = stopwatch.end();
+    Poligono<pointType> gs = calculator.grahamScan(cloud);
+    gsTime = stopwatch.end();
 
-    logger << "Tiempo de ejecución de Graham Scan  : " << qhTime << " microsegundos." << endl;
+    logger << "Tiempo de ejecución de Graham Scan  : " << gsTime << " microsegundos." << endl;
     cout << endl;
 
     // Chequeo de igualdad
-    if (gw != qh)
+    if (gw != gs)
     {
         logger << "Polígonos no son iguales. " << endl;
         cout << endl;
@@ -71,11 +80,13 @@ int main(void) {
         cout << endl;
         cout << gw << endl;
         cout << " v/s " << endl;
-        cout << qh << endl;
+        cout << gs << endl;
     }
     else
     {
         logger << "Polígonos iguales, ConvexHull creado correctamente." << endl;
+        cout << endl;
+        logger << gw << endl;
     }
     cout << endl;
 
