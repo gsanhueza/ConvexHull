@@ -43,6 +43,9 @@ int main(void) {
     // Logging
     Logger logger("ANALISIS");
 
+    logger << "- - - - -" << endl;
+    cout << endl;
+
     logger << "Supuestos:" << endl;
     cout << endl;
     logger << "* Se ocuparon 2^10 puntos aleatorios de tipo int, con valores de coordenadas entre 1 y 10000." << endl;
@@ -92,6 +95,21 @@ int main(void) {
 
     logger << "- - - - -" << endl;
     cout << endl;
+
+    logger << "Resultados en porcentaje:" << endl;
+    cout << endl;
+
+    if (gwTime < gsTime)
+    {
+        logger << "Caso particular de Gift Wrapping un " << (100.0 * (gsTime - gwTime) / gsTime) << "% más rápido que Graham Scan." << endl;
+    }
+    else
+    {
+        logger << "Caso normal de Graham Scan un " << (100.0 * (gwTime - gsTime) / gwTime) << "% más rápido que Gift Wrapping." << endl;
+    }
+
+    cout << endl;
+    logger << "- - - - -" << endl;
 
     logger.close();
 
