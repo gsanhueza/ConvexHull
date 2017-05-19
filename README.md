@@ -9,3 +9,4 @@
 # Notas
 
 Esta tarea usa *lambdas*, por lo que se requiere un compilador con soporte para C++11.
+(En particular esta tarea es compilable con GCC 6.3)
