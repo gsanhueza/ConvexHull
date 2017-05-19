@@ -17,9 +17,12 @@ using namespace std;
 * @return int Código de retorno 0.
 */
 int main(void) {
+    // Tipo de punto
+    typedef int pointType;
+
     // Creación de nube de puntos
-    int numPoints = static_cast<int>(pow(2, 11));
-    vector<Punto<int>> cloud = Generator<int>::generateRandomCloud(numPoints, 1, 10000);
+    int numPoints = static_cast<int>(pow(2, 10));
+    vector<Punto<pointType>> cloud = Generator<pointType>::generateRandomCloud(numPoints, 1, 10000);
 
 //     TESTING
 //     cloud.clear();
@@ -30,20 +33,12 @@ int main(void) {
 //     cloud.push_back(Punto<int>(200, 300));
 
     // Creación de convex hulls
-    ConvexHull<int> calculator;
+    ConvexHull<pointType> calculator;
 
     // Tiempo transcurrido
     Stopwatch stopwatch;
     int gwTime;
     int qhTime;
-
-    stopwatch.start();
-    Poligono<int> gw = calculator.giftWrapping(cloud);
-    gwTime = stopwatch.end();
-
-    stopwatch.start();
-    Poligono<int> qh = calculator.grahamScan(cloud);
-    qhTime = stopwatch.end();
 
     // Logging
     Logger logger("ANALISIS");
@@ -51,9 +46,20 @@ int main(void) {
     logger << "Análisis de resultados para " << numPoints << " puntos." << endl << endl;
     cout << endl << endl;
 
-    logger << "Tiempo de ejecución de Gift Wrapping: " << gwTime << " nanosegundos." << endl;
+    // Gift Wrapping
+    stopwatch.start();
+    Poligono<pointType> gw = calculator.giftWrapping(cloud);
+    gwTime = stopwatch.end();
+
+    logger << "Tiempo de ejecución de Gift Wrapping: " << gwTime << " microsegundos." << endl;
     cout << endl;
-    logger << "Tiempo de ejecución de Graham Scan  : " << qhTime << " nanosegundos." << endl;
+
+    // Graham Scan
+    stopwatch.start();
+    Poligono<pointType> qh = calculator.grahamScan(cloud);
+    qhTime = stopwatch.end();
+
+    logger << "Tiempo de ejecución de Graham Scan  : " << qhTime << " microsegundos." << endl;
     cout << endl;
 
     // Chequeo de igualdad

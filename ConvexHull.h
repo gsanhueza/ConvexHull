@@ -60,7 +60,7 @@ Poligono<T> ConvexHull<T>::grahamScan(vector<Punto<T>> &cloud)
 
     swapPoints(cloud, 0, lowestPos);
     Punto<T> p0(cloud.at(0));
-    polarSort(cloud);
+    polarSort(cloud);                                       // FIXME Esta wea se demora más que la conchetumare xddxdxd
 
     int M = 1;
 
